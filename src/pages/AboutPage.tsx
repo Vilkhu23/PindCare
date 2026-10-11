@@ -9,14 +9,19 @@ export const AboutPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 pb-24">
       {/* Header */}
       <div className="bg-[#144d37] text-white rounded-2xl p-6 sm:p-8 space-y-4">
-        <span className="bg-[#fe932c] text-[#002114] text-xs font-bold px-2.5 py-0.5 rounded-full inline-block">
-          Original Tricity Identity
-        </span>
+        <div className="flex items-center space-x-2">
+          <span className="bg-[#fe932c] text-[#002114] text-xs font-bold px-2.5 py-0.5 rounded-full inline-block">
+            Original Tricity Identity
+          </span>
+          <span className="bg-white/20 text-[#b6efd1] text-xs font-semibold px-2.5 py-0.5 rounded-full inline-block">
+            Your Space | Our Care
+          </span>
+        </div>
         <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-          PindCare Punjab: Rooted in Kharar & Mohali
+          UrbanCare Solution: Rooted in Kharar & Mohali
         </h1>
         <p className="text-xs sm:text-sm text-gray-200 max-w-2xl leading-relaxed">
-          The rapidly growing urban corridor of Kharar, Sunny Enclave, Sector 115, and Landran deserves authentic, dependable domestic care. We built PindCare to solve the trust deficit in home repairs.
+          The rapidly growing urban corridor of Kharar, Sunny Enclave, Sector 115, and Landran deserves authentic, dependable domestic care. We built UrbanCare Solution to solve the trust deficit in home repairs.
         </p>
       </div>
 

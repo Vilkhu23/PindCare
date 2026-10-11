@@ -62,7 +62,7 @@ export const BecomePartnerPage: React.FC = () => {
           Artisans & Contractors in Punjab
         </span>
         <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-          Join PindCare Punjab as a Registered Service Partner
+          Join UrbanCare Solution as a Registered Service Partner
         </h1>
         <p className="text-xs sm:text-sm text-[#b6efd1] max-w-2xl leading-relaxed">
           Grow your local trade business across Kharar, Sunny Enclave, Sector 115, and Mohali with genuine Qualified Work Opportunities reviewed directly by our operations team.

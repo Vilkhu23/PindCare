@@ -304,7 +304,7 @@ export const CartDrawer: React.FC = () => {
                   </div>
                 )}
                 <div className="flex justify-between text-[#404943]">
-                  <span>PindCare 30-Day Guarantee</span>
+                  <span>UrbanCare Solution 30-Day Guarantee</span>
                   <span className="text-[#003523] font-bold">Included Free</span>
                 </div>
                 

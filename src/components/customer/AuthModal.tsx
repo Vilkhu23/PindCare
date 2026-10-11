@@ -129,7 +129,7 @@ export const AuthModal: React.FC = () => {
                 {currentUser ? 'Customer Account' : mode === 'login' ? 'Customer Sign In' : 'Create Resident Account'}
               </h2>
               <p className="text-[11px] text-[#b6efd1]/90">
-                PindCare Punjab · Tricity Doorstep Services
+                UrbanCare Solution · Your Space | Our Care
               </p>
             </div>
           </div>

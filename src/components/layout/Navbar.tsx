@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
               </div>
               <div>
                 <div className="text-lg font-bold text-[#003523] tracking-tight leading-none">
-                  UrbanCare Solutions
+                  UrbanCare Solution
                 </div>
                 <div className="text-[11px] text-[#707973] font-medium leading-tight">
                   Your Space | Our Care
@@ -397,7 +397,7 @@ export const Navbar: React.FC = () => {
                 }}
                 className="p-2.5 rounded-lg bg-[#faf8ff] text-left hover:bg-[#eaedff]"
               >
-                About PindCare
+                About UrbanCare Solution
               </button>
               <button
                 onClick={() => {

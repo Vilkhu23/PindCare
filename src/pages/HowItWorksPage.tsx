@@ -48,7 +48,7 @@ export const HowItWorksPage: React.FC = () => {
     {
       step: '07',
       title: 'Customer Review & Warranty Activation',
-      desc: 'Your feedback is recorded on the artisan’s ledger. PindCare 30-Day Workmanship Guarantee activates automatically.'
+      desc: 'Your feedback is recorded on the artisan’s ledger. UrbanCare Solution 30-Day Workmanship Guarantee activates automatically.'
     }
   ];
 
@@ -60,7 +60,7 @@ export const HowItWorksPage: React.FC = () => {
           Operations-Led Architecture
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-[#131b2e] tracking-tight">
-          How PindCare Punjab Works
+          How UrbanCare Solution Works
         </h1>
         <p className="text-xs sm:text-sm text-[#404943] leading-relaxed">
           Why we strictly reject automated gig matching in favor of central human dispatch supervision for Kharar, Mohali, and Landran.
@@ -92,7 +92,7 @@ export const HowItWorksPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-[#c0edd3]/30 border border-[#144d37]/30 space-y-3">
           <div className="flex items-center space-x-2 text-[#003523] font-bold text-sm">
             <ShieldCheck className="w-5 h-5 text-[#003523]" />
-            <span>✓ The PindCare Operations-Led Standard</span>
+            <span>✓ The UrbanCare Solution Operations-Led Standard</span>
           </div>
           <ul className="space-y-2 text-xs text-[#131b2e]">
             <li className="flex items-start space-x-2">

@@ -157,7 +157,7 @@ export const EmployeePortal: React.FC = () => {
             <div className="w-16 h-16 rounded-2xl bg-[#fe932c] text-[#002114] flex items-center justify-center mx-auto mb-4 font-black text-2xl shadow-lg">
               <HardHat className="w-8 h-8" />
             </div>
-            <h2 className="text-xl font-bold tracking-tight">PindCare Staff Technician Hub</h2>
+            <h2 className="text-xl font-bold tracking-tight">UrbanCare Solution Staff Technician Hub</h2>
             <p className="text-xs text-gray-200 mt-1">
               Role-Protected In-House Employee Dispatch Portal
             </p>

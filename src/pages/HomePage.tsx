@@ -162,7 +162,7 @@ export const HomePage: React.FC = () => {
   const catalogueFaqs = [
     {
       q: 'How does local operations dispatch protect customer pricing and safety?',
-      a: 'Unlike algorithmic aggregator apps that blindly push leads to unvetted gig workers, every PindCare booking is audited by our Kharar dispatch officer at Sector 125, Sunny Enclave. We assign an accountable, background-verified technician equipped with verified tools and enforce genuine retail shop MRP billing on replacement parts.'
+      a: 'Unlike algorithmic aggregator apps that blindly push leads to unvetted gig workers, every UrbanCare Solution booking is audited by our Kharar dispatch officer at Sector 125, Sunny Enclave. We assign an accountable, background-verified technician equipped with verified tools and enforce genuine retail shop MRP billing on replacement parts.'
     },
     {
       q: 'What is the pricing policy for inspection fees and spare parts?',
@@ -173,7 +173,7 @@ export const HomePage: React.FC = () => {
       a: 'No. Standard home repairs require ₹0 advance payment. You inspect and test the completed work in your home first, then pay directly via UPI or Cash. For large Home Projects (modular kitchens, renovations), payments are tied to verified civil delivery milestones.'
     },
     {
-      q: 'What is covered under the PindCare 30-Day Workmanship Warranty?',
+      q: 'What is covered under the UrbanCare Solution 30-Day Workmanship Warranty?',
       a: 'If any serviced appliance, repaired joint, tap fitting, or switchboard re-develops an issue within 30 days of completion, our local dispatch supervisor schedules a technician visit with zero extra charge.'
     },
     {

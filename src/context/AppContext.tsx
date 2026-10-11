@@ -599,7 +599,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           id: `cust-${Date.now()}`,
           name: generatedName.charAt(0).toUpperCase() + generatedName.slice(1),
           phone: formattedPhone,
-          email: cleanInput.includes('@') ? cleanInput : `${cleanPhoneDigits}@pindcare.in`,
+          email: cleanInput.includes('@') ? cleanInput : `${cleanPhoneDigits}@urbancaresolution.in`,
           locality: currentLocality,
           address: `House / Flat, ${currentLocality}`,
           totalBookings: 0,
@@ -673,7 +673,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setCurrentRole('customer');
     if (newCustomer.locality) setCurrentLocalityState(newCustomer.locality);
     addAuditEntry('CUSTOMER_REGISTERED', 'VENDOR', newCustomer.id, `Customer registered: ${newCustomer.name} (${newCustomer.phone})`);
-    showToast(`Welcome to PindCare, ${newCustomer.name}!`, 'success');
+    showToast(`Welcome to UrbanCare Solution, ${newCustomer.name}!`, 'success');
     return newCustomer;
   };
 

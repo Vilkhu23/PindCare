@@ -166,7 +166,7 @@ export const VendorPortal: React.FC = () => {
             <div className="w-16 h-16 rounded-2xl bg-[#fe932c] text-[#002114] flex items-center justify-center mx-auto mb-4 font-black text-2xl shadow-lg">
               <HardHat className="w-8 h-8" />
             </div>
-            <h2 className="text-xl font-bold tracking-tight">PindCare Trade Partner Network</h2>
+            <h2 className="text-xl font-bold tracking-tight">UrbanCare Solution Trade Partner Network</h2>
             <p className="text-xs text-gray-200 mt-1">
               Role-Protected Artisan & Contractor Dispatch Portal
             </p>
@@ -824,7 +824,7 @@ export const VendorPortal: React.FC = () => {
               <div>
                 <span className="font-bold text-sm block">Customer-Data Privacy Active Before Acceptance</span>
                 <p className="text-[11px] text-amber-800 mt-0.5">
-                  In accordance with PindCare Partner Privacy Standards, only the technical scope, requested time slot, locality sector, and gross payout are displayed below. Full customer name, exact house number, and phone number are locked until you evaluate the job and click <strong>Accept Assignment</strong>.
+                  In accordance with UrbanCare Solution Partner Privacy Standards, only the technical scope, requested time slot, locality sector, and gross payout are displayed below. Full customer name, exact house number, and phone number are locked until you evaluate the job and click <strong>Accept Assignment</strong>.
                 </p>
               </div>
             </div>
@@ -1422,7 +1422,7 @@ export const VendorPortal: React.FC = () => {
                     <span>No Guaranteed Jobs Notice</span>
                   </div>
                   <p className="text-[11px] text-blue-900 leading-relaxed">
-                    Opportunity credits connect verified partners with qualified, screened local customer demand. PindCare does not promise or guarantee fixed employment, revenue, or job volume. Earnings depend on customer booking confirmation and technician responsiveness.
+                    Opportunity credits connect verified partners with qualified, screened local customer demand. UrbanCare Solution does not promise or guarantee fixed employment, revenue, or job volume. Earnings depend on customer booking confirmation and technician responsiveness.
                   </p>
                 </div>
               </div>

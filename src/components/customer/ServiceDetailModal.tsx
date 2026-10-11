@@ -131,7 +131,7 @@ export const ServiceDetailModal: React.FC = () => {
                   </div>
                 ) : (
                   <div className="text-[11px] text-[#003523] font-semibold mt-1">
-                    Verified PindCare Standard Service
+                    Verified UrbanCare Solution Standard Service
                   </div>
                 )}
               </div>

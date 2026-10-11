@@ -13,9 +13,12 @@ export const Footer: React.FC = () => {
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-lg bg-[#fe932c] text-[#002114] flex items-center justify-center font-bold text-base">
-                P
+                U
               </div>
-              <span className="text-xl font-bold tracking-tight">PindCare Punjab</span>
+              <div>
+                <span className="text-xl font-bold tracking-tight block leading-tight">UrbanCare Solution</span>
+                <span className="text-[11px] text-[#b6efd1] font-medium">Your Space | Our Care</span>
+              </div>
             </div>
             <p className="text-xs text-gray-300 leading-relaxed">
               Operations-led local home services and project marketplace for Kharar, Mohali, Sunny Enclave, Sector 115, and Landran. Every request manually verified and assigned by our local dispatch team.
@@ -83,7 +86,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <button onClick={() => setCurrentPage('about')} className="hover:text-white transition-colors">
-                  About PindCare Punjab
+                  About UrbanCare Solution
                 </button>
               </li>
               <li>
@@ -145,7 +148,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2 text-gray-300">
               <Mail className="w-4 h-4 text-[#fe932c] shrink-0" />
-              <span>dispatch@pindcare.punjab.in</span>
+              <span>dispatch@urbancaresolution.in</span>
             </div>
             <div className="p-2.5 rounded-lg bg-[#144d37]/40 border border-[#336851]/40 text-[11px] text-gray-200">
               ⚡ Local dispatch vans positioned across Sector 115, Landran, Gillco & Phase 7 Mohali.
@@ -155,7 +158,7 @@ export const Footer: React.FC = () => {
 
         <div className="pt-6 border-t border-[#144d37] flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-400 gap-3">
           <div>
-            © {new Date().getFullYear()} PindCare Punjab. All rights reserved. Built for Tricity households.
+            © {new Date().getFullYear()} UrbanCare Solution. All rights reserved. Built for Tricity households.
           </div>
           <div className="flex items-center space-x-4">
             <span>Independent Operations Marketplace</span>

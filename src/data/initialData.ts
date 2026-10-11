@@ -2236,9 +2236,9 @@ export const INITIAL_PAYMENTS: PaymentRecord[] = [
 
 export const INITIAL_OPS_SETTINGS: OpsSettings = [
   {
-    dispatchCenterName: 'PindCare Operations Command Hub - Kharar Central',
+    dispatchCenterName: 'UrbanCare Solution Operations Command Hub - Kharar Central',
     emergencyHotline: '+91 98889 00122',
-    supportEmail: 'ops@pindcare.in',
+    supportEmail: 'ops@urbancaresolution.in',
     defaultVisitFee: 99,
     defaultGstPercent: 18,
     requireSupervisorSignoff: true,
