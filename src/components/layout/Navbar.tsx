@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
               Tricity Civic Hub
             </span>
             <span className="hidden sm:inline text-gray-200">
-              Kharar · Mohali · Sector 115 · Sunny Enclave · Landran
+              Service Available In Sectors 94 to 111
             </span>
           </div>
 
@@ -157,14 +157,14 @@ export const Navbar: React.FC = () => {
               className="text-left group flex items-center space-x-2"
             >
               <div className="w-9 h-9 rounded-xl bg-[#003523] text-white flex items-center justify-center font-bold text-lg shadow-sm group-hover:bg-[#144d37] transition-colors">
-                P
+                U
               </div>
               <div>
                 <div className="text-lg font-bold text-[#003523] tracking-tight leading-none">
-                  PindCare Punjab
+                  UrbanCare Solutions
                 </div>
                 <div className="text-[11px] text-[#707973] font-medium leading-tight">
-                  Tricity Di Apni Sewa
+                  Your Space | Our Care
                 </div>
               </div>
             </button>

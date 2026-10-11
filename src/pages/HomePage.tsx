@@ -193,7 +193,7 @@ export const HomePage: React.FC = () => {
             <span className="text-gray-200">Dispatches active across {currentLocality}, Sector 115, Sunny Enclave & Landran</span>
           </div>
           <div className="flex items-center space-x-4 text-[11px] text-gray-300">
-            <span>Direct Dispatch: <strong className="text-white">+91 98882 10452</strong></span>
+            <span>Direct Dispatch: <strong className="text-white">+91 8284018909</strong></span>
             <span className="hidden md:inline">·</span>
             <span className="text-[#fe932c] font-semibold hidden md:inline">₹0 Advance · Pay After Completion</span>
           </div>
