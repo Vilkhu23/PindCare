@@ -13,19 +13,114 @@ import {
   PaymentRecord,
   OpsSettings,
   OpportunityLedgerEntry,
-  EmployeeNotification
+  EmployeeNotification,
+  ServiceZone
 } from '../types';
 import { normalizeServiceItem } from '../utils/pricingEngine';
 
-export const LOCALITIES = [
-  'Sunny Enclave, Kharar',
-  'Sector 115, Kharar',
-  'Landran Road, Kharar',
-  'Gillco Valley, Kharar',
-  'Phase 7, Mohali',
-  'Sector 70, Mohali',
-  'VIP Road, Zirakpur'
+export const SERVICE_AVAILABLE_ZONES: ServiceZone[] = [
+  {
+    id: 'zone-sec-94',
+    sector: 'Sector 94',
+    name: 'Sector 94 (JLPL / Fateh Burj)',
+    description: 'JLPL residential pocket, proximity to Fateh Burj & Sector 91 commercial spine',
+    keyEnclaves: ['JLPL Residential Pocket', 'Fateh Burj Corridor', 'Sector 91 Commercial Spine'],
+    activeArtisansCount: 8,
+    avgResponseMinutes: 25
+  },
+  {
+    id: 'zone-sec-95-97',
+    sector: 'Sectors 95–97',
+    name: 'Sectors 95–97 (GMADA Planned Zones)',
+    description: 'GMADA planned expansion zones, residential layouts, green parks',
+    keyEnclaves: ['GMADA Planned Expansion', 'Residential Layouts', 'Community Green Parks'],
+    activeArtisansCount: 9,
+    avgResponseMinutes: 30
+  },
+  {
+    id: 'zone-sec-98-99',
+    sector: 'Sectors 98–99',
+    name: 'Sectors 98–99 (Wave Estate Extension)',
+    description: 'GMADA residential plots, Wave Estate extension',
+    keyEnclaves: ['GMADA Residential Plots', 'Wave Estate Extension Belts'],
+    activeArtisansCount: 7,
+    avgResponseMinutes: 25
+  },
+  {
+    id: 'zone-sec-100-101',
+    sector: 'Sector 100–101',
+    name: 'Sector 100–101 (Plaksha Univ Corridor)',
+    description: 'Institutional zone, Plaksha University corridor',
+    keyEnclaves: ['Plaksha University Corridor', 'Institutional Knowledge Spine', 'IT City Boundary'],
+    activeArtisansCount: 6,
+    avgResponseMinutes: 30
+  },
+  {
+    id: 'zone-sec-104',
+    sector: 'Sector 104',
+    name: 'Sector 104 (Emaar Mohali Hills / The Terraces)',
+    description: 'Emaar Mohali Hills (The Terraces, plotted luxury belts)',
+    keyEnclaves: ['Emaar Mohali Hills', 'The Terraces Luxury Floors', 'Plotted Luxury Belts'],
+    activeArtisansCount: 11,
+    avgResponseMinutes: 20
+  },
+  {
+    id: 'zone-sec-105',
+    sector: 'Sector 105',
+    name: 'Sector 105 (Emaar Central Plaza / The Views)',
+    description: 'Emaar Central Plaza, The Views, The Villas',
+    keyEnclaves: ['Emaar Central Plaza', 'The Views High-Rise', 'The Villas Enclave'],
+    activeArtisansCount: 12,
+    avgResponseMinutes: 20
+  },
+  {
+    id: 'zone-sec-106-107',
+    sector: 'Sector 106–107',
+    name: 'Sector 106–107 (Mixed Residential & Plots)',
+    description: 'Mixed residential & upcoming plotted sectors',
+    keyEnclaves: ['Mixed Residential Pockets', 'Upcoming Plotted Layouts', 'Aerocity Connecting Spine'],
+    activeArtisansCount: 8,
+    avgResponseMinutes: 30
+  },
+  {
+    id: 'zone-sec-108',
+    sector: 'Sector 108',
+    name: 'Sector 108 (Emaar Mohali Hills Plots)',
+    description: 'Emaar Mohali Hills plotted sectors',
+    keyEnclaves: ['Emaar Mohali Hills Plotted', 'Private Villa Belts'],
+    activeArtisansCount: 7,
+    avgResponseMinutes: 25
+  },
+  {
+    id: 'zone-sec-109',
+    sector: 'Sector 109',
+    name: 'Sector 109 (Emaar The Bungalows)',
+    description: 'Emaar The Bungalows & adjoining plotted enclaves',
+    keyEnclaves: ['Emaar The Bungalows', 'Adjoining Plotted Enclaves'],
+    activeArtisansCount: 9,
+    avgResponseMinutes: 25
+  },
+  {
+    id: 'zone-sec-110',
+    sector: 'Sector 110',
+    name: 'Sector 110 (TDI City / Wellington)',
+    description: 'TDI City (Wellington, plots, institutional edge)',
+    keyEnclaves: ['TDI City Wellington Heights', 'Plotted Residential Sectors', 'Institutional Edge'],
+    activeArtisansCount: 14,
+    avgResponseMinutes: 20
+  },
+  {
+    id: 'zone-sec-111',
+    sector: 'Sector 111',
+    name: 'Sector 111 (TDI Connaught Place / Tuscan)',
+    description: 'TDI Connaught Place, Tuscan Residency, Landran–Banur Road junction',
+    keyEnclaves: ['TDI Connaught Place', 'Tuscan Residency', 'Landran–Banur Road Junction'],
+    activeArtisansCount: 12,
+    avgResponseMinutes: 20
+  }
 ];
+
+export const LOCALITIES = SERVICE_AVAILABLE_ZONES.map((zone) => zone.name);
 
 export const SERVICE_CATEGORIES = [
   { 

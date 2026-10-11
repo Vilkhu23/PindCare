@@ -397,3 +397,13 @@ export interface DPDPGrievance {
   dpoOfficer: string;
   resolutionNotes?: string;
 }
+
+export interface ServiceZone {
+  id: string;
+  sector: string;
+  name: string;
+  description: string;
+  keyEnclaves: string[];
+  activeArtisansCount: number;
+  avgResponseMinutes: number;
+}

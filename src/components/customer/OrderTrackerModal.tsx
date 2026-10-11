@@ -131,7 +131,7 @@ export const OrderTrackerModal: React.FC = () => {
                     <span>Call Artisan</span>
                   </a>
                   <a
-                    href="tel:+919888210452"
+                    href="tel:+918284018909"
                     className="px-2.5 py-1.5 rounded-lg border border-[#c0c9c2] text-[#131b2e] text-xs font-semibold hover:bg-white"
                     title="Call Kharar Operations Desk"
                   >
@@ -149,7 +149,7 @@ export const OrderTrackerModal: React.FC = () => {
                 </span>
               </div>
               <a
-                href="tel:+919888210452"
+                href="tel:+918284018909"
                 className="shrink-0 text-xs font-bold text-[#003523] underline"
               >
                 Help Desk

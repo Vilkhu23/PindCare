@@ -30,7 +30,7 @@ export const ContactPage: React.FC = () => {
             <Phone className="w-5 h-5 text-[#003523] shrink-0 mt-0.5" />
             <div>
               <strong className="text-[#131b2e] block">Telephone Dispatch Line</strong>
-              <span>+91 98882 10452 / +91 94172 88412</span>
+              <span>+91 82840 18909 (Tricity Dispatch Line)</span>
             </div>
           </div>
 

@@ -128,11 +128,11 @@ export const ProjectsPage: React.FC = () => {
             <span>Request Free Site Visit & Quote</span>
           </button>
           <a
-            href="tel:+919888210452"
+            href="tel:+918284018909"
             className="px-4 py-3 rounded-xl border border-white/30 text-white text-xs font-semibold hover:bg-white/10 transition-all flex items-center space-x-1.5"
           >
             <Phone className="w-3.5 h-3.5 text-[#fe932c]" />
-            <span>Call Civil Supervisor: +91 98882 10452</span>
+            <span>Call Civil Supervisor: +91 82840 18909</span>
           </a>
         </div>
       </div>

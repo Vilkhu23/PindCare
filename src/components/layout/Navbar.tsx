@@ -60,9 +60,16 @@ export const Navbar: React.FC = () => {
             <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-[#fe932c] text-[#002114] font-bold text-[10px] tracking-wide uppercase">
               Tricity Civic Hub
             </span>
-            <span className="hidden sm:inline text-gray-200">
-              Service Available In Sectors 94 to 111
-            </span>
+            <button
+              onClick={() => setIsLocalityModalOpen(true)}
+              className="hidden sm:inline-flex items-center space-x-1.5 text-gray-200 hover:text-white hover:underline transition-colors cursor-pointer"
+              title="Click to view all 11 Service Available Sectors and Enclaves"
+            >
+              <span>Service Available In Sectors 94 to 111</span>
+              <span className="text-[10px] bg-[#144d37] text-[#b6efd1] px-1.5 py-0.2 rounded font-semibold border border-[#336851]/60">
+                View Zones & Locations
+              </span>
+            </button>
           </div>
 
           <div className="flex items-center space-x-2">

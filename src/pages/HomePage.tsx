@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
-import { SERVICE_CATEGORIES } from '../data/initialData';
+import { SERVICE_CATEGORIES, SERVICE_AVAILABLE_ZONES } from '../data/initialData';
 import { ViewAllServicesModal } from '../components/customer/ViewAllServicesModal';
 import { formatServicePricing } from '../utils/pricingEngine';
 import {
@@ -39,6 +39,8 @@ import {
 export const HomePage: React.FC = () => {
   const {
     currentLocality,
+    setCurrentLocality,
+    setIsLocalityModalOpen,
     services,
     packages,
     cart,
@@ -895,11 +897,11 @@ export const HomePage: React.FC = () => {
 
           <div className="shrink-0 flex flex-col sm:flex-row md:flex-col gap-2 w-full md:w-auto">
             <a
-              href="tel:+919888210452"
+              href="tel:+918284018909"
               className="px-5 py-3 rounded-xl bg-[#003523] hover:bg-[#144d37] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-xs transition-all"
             >
               <Phone className="w-4 h-4 text-[#fe932c]" />
-              <span>Call Dispatch: +91 98882 10452</span>
+              <span>Call Dispatch: +91 82840 18909</span>
             </a>
             <button
               onClick={() => setIsCustomTaskModalOpen(true)}
@@ -908,6 +910,99 @@ export const HomePage: React.FC = () => {
               <span>Describe Unique Problem</span>
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* Service Available Zones & Locations: Sectors 94 to 111 */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
+          <div className="space-y-1">
+            <div className="flex items-center space-x-2 text-xs font-bold text-[#003523]">
+              <span className="w-2 h-2 rounded-full bg-[#fe932c] animate-pulse"></span>
+              <span className="uppercase tracking-wider">Active Doorstep Coverage</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-[#131b2e]">
+              Service Available Zones & Locations (Sectors 94 to 111)
+            </h2>
+            <p className="text-xs text-[#707973] max-w-2xl">
+              Dedicated vans and verified local artisans positioned across every GMADA, Emaar, TDI, and JLPL residential corridor for fast ~20–30 min arrival.
+            </p>
+          </div>
+
+          <button
+            onClick={() => setIsLocalityModalOpen(true)}
+            className="self-start md:self-auto px-4 py-2 rounded-xl bg-[#003523] hover:bg-[#144d37] text-white text-xs font-bold flex items-center space-x-1.5 shadow-xs transition-all"
+          >
+            <MapPin className="w-3.5 h-3.5 text-[#fe932c]" />
+            <span>Select Sector ({currentLocality})</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          {SERVICE_AVAILABLE_ZONES.map((zone) => {
+            const isCurrent = currentLocality === zone.name || currentLocality === zone.sector;
+            return (
+              <div
+                key={zone.id}
+                className={`p-4 rounded-2xl border transition-all flex flex-col justify-between space-y-3 ${
+                  isCurrent
+                    ? 'bg-[#c0edd3]/20 border-[#003523] ring-1 ring-[#003523] shadow-xs'
+                    : 'bg-white border-[#c0c9c2]/60 hover:border-[#003523]/60 hover:shadow-xs'
+                }`}
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black px-2.5 py-1 rounded-lg bg-[#003523] text-white tracking-wide">
+                      {zone.sector}
+                    </span>
+                    <span className="text-[11px] font-bold text-[#003523] flex items-center space-x-1">
+                      <Clock className="w-3 h-3 text-[#fe932c]" />
+                      <span>~{zone.avgResponseMinutes} min ETA</span>
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-sm text-[#131b2e]">
+                    {zone.name}
+                  </h3>
+
+                  <p className="text-xs text-[#404943] leading-relaxed">
+                    {zone.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {zone.keyEnclaves.map((enc) => (
+                      <span
+                        key={enc}
+                        className="text-[10px] bg-[#f2f3ff] text-[#404943] font-semibold px-2 py-0.5 rounded-full border border-[#c0c9c2]/40"
+                      >
+                        {enc}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-[#c0c9c2]/30 flex items-center justify-between">
+                  <span className="text-[11px] text-[#707973]">
+                    {zone.activeArtisansCount} verified pros active
+                  </span>
+
+                  <button
+                    onClick={() => {
+                      setCurrentLocality(zone.name);
+                      showToast(`Selected ${zone.sector} as your active service zone.`, 'info');
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      isCurrent
+                        ? 'bg-[#003523] text-white'
+                        : 'border border-[#003523] text-[#003523] hover:bg-[#c0edd3]/25'
+                    }`}
+                  >
+                    {isCurrent ? 'Active Sector' : 'Select Sector'}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2 text-gray-300">
               <Phone className="w-4 h-4 text-[#fe932c] shrink-0" />
-              <span>+91 98882 10452 (Tricity Dispatch Line)</span>
+              <span>+91 82840 18909 (Tricity Dispatch Line)</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-300">
               <Mail className="w-4 h-4 text-[#fe932c] shrink-0" />
