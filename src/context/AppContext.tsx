@@ -20,7 +20,10 @@ import {
   OpsSettings,
   InternalNote,
   AssignmentHistoryItem,
-  EmployeeNotification
+  EmployeeNotification,
+  DPDPConsentPreferences,
+  DPDPNominee,
+  DPDPGrievance
 } from '../types';
 import {
   INITIAL_SERVICES,
@@ -41,6 +44,14 @@ import {
   LOCALITIES
 } from '../data/initialData';
 import { calculateOrderPricing, normalizeServiceItem } from '../utils/pricingEngine';
+import { collection, onSnapshot } from 'firebase/firestore';
+import {
+  db,
+  persistServiceRequest,
+  persistCustomerReview,
+  persistHomeProject,
+  persistComplaint
+} from '../firebase';
 
 interface ToastMessage {
   id: string;
@@ -251,6 +262,22 @@ interface AppContextType {
     address?: string;
   }) => CustomerRecord;
   logoutCustomer: () => void;
+
+  // DPDP Act 2023 Compliance & Data Principal Rights
+  dpdpConsent: DPDPConsentPreferences;
+  updateDPDPConsent: (preferences: Partial<DPDPConsentPreferences>) => void;
+  dpdpNominee: DPDPNominee | null;
+  updateDPDPNominee: (nominee: DPDPNominee) => void;
+  dpdpGrievances: DPDPGrievance[];
+  fileDPDPGrievance: (grievance: Omit<DPDPGrievance, 'id' | 'ticketNo' | 'status' | 'createdAt' | 'dpoOfficer'>) => DPDPGrievance;
+  requestDataErasure: (reason?: string) => void;
+  exportPersonalData: () => string;
+  isDPDPNoticeOpen: boolean;
+  setIsDPDPNoticeOpen: (open: boolean) => void;
+  isDPDPConsentManagerOpen: boolean;
+  setIsDPDPConsentManagerOpen: (open: boolean) => void;
+  isDPDPDataRightsOpen: boolean;
+  setIsDPDPDataRightsOpen: (open: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -271,7 +298,10 @@ const STORAGE_KEYS = {
   CURRENT_VENDOR: 'pindcare_current_vendor_v1',
   CURRENT_EMPLOYEE: 'pindcare_current_employee_v1',
   EMPLOYEE_NOTIFICATIONS: 'pindcare_employee_notifications_v1',
-  CURRENT_USER: 'pindcare_current_user_v1'
+  CURRENT_USER: 'pindcare_current_user_v1',
+  DPDP_CONSENT: 'urbancare_dpdp_consent_v1',
+  DPDP_NOMINEE: 'urbancare_dpdp_nominee_v1',
+  DPDP_GRIEVANCES: 'urbancare_dpdp_grievances_v1'
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -418,6 +448,71 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedDetailServiceId, setSelectedDetailServiceId] = useState<string | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
+  // DPDP Modals & Rights States
+  const [isDPDPNoticeOpen, setIsDPDPNoticeOpen] = useState(false);
+  const [isDPDPConsentManagerOpen, setIsDPDPConsentManagerOpen] = useState(false);
+  const [isDPDPDataRightsOpen, setIsDPDPDataRightsOpen] = useState(false);
+
+  const [dpdpConsent, setDpdpConsent] = useState<DPDPConsentPreferences>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.DPDP_CONSENT);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        // use default
+      }
+    }
+    return {
+      essentialService: true,
+      dispatchUpdates: true,
+      promotionalMarketing: false,
+      callMasking: true,
+      consentedAt: new Date().toISOString(),
+      ipJurisdiction: 'Kharar & Mohali (Punjab, India)',
+      version: 'DPDP-2023-V1.2'
+    };
+  });
+
+  const [dpdpNominee, setDpdpNominee] = useState<DPDPNominee | null>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.DPDP_NOMINEE);
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  const [dpdpGrievances, setDpdpGrievances] = useState<DPDPGrievance[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.DPDP_GRIEVANCES);
+    return saved ? JSON.parse(saved) : [
+      {
+        id: 'grv-sample-1',
+        ticketNo: 'DPDP-GRV-8492',
+        userName: 'Simranjeet Singh',
+        userPhone: '+91 98881 22340',
+        type: 'RIGHT_TO_ACCESS',
+        description: 'Requested verification of technician call masking on sector 115 booking.',
+        status: 'RESOLVED',
+        createdAt: '2025-05-10T10:00:00.000Z',
+        dpoOfficer: 'Mr. Gurpreet Singh (DPO, Kharar)',
+        resolutionNotes: 'Masked call relay verified active. No personal numbers exposed.'
+      }
+    ];
+  });
+
+  // Sync DPDP preferences to storage
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.DPDP_CONSENT, JSON.stringify(dpdpConsent));
+  }, [dpdpConsent]);
+
+  useEffect(() => {
+    if (dpdpNominee) {
+      localStorage.setItem(STORAGE_KEYS.DPDP_NOMINEE, JSON.stringify(dpdpNominee));
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.DPDP_NOMINEE);
+    }
+  }, [dpdpNominee]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.DPDP_GRIEVANCES, JSON.stringify(dpdpGrievances));
+  }, [dpdpGrievances]);
+
   // Sync to local storage on changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify(services));
@@ -458,6 +553,93 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
   }, [cart]);
+
+  // Real-time Firestore synchronization for UrbanCare Solution
+  useEffect(() => {
+    let unsubReq = () => {};
+    let unsubRev = () => {};
+    let unsubProj = () => {};
+    let unsubComp = () => {};
+
+    try {
+      unsubReq = onSnapshot(collection(db, 'service_requests'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudRequests: ServiceRequest[] = [];
+          snapshot.forEach((d) => {
+            cloudRequests.push(d.data() as ServiceRequest);
+          });
+          setRequests((prev) => {
+            const map = new Map<string, ServiceRequest>();
+            prev.forEach((r) => map.set(r.id, r));
+            cloudRequests.forEach((r) => map.set(r.id, r));
+            return Array.from(map.values());
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore service_requests sync notice:', err.message);
+      });
+
+      unsubRev = onSnapshot(collection(db, 'customer_reviews'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudReviews: CustomerReview[] = [];
+          snapshot.forEach((d) => {
+            cloudReviews.push(d.data() as CustomerReview);
+          });
+          setReviews((prev) => {
+            const map = new Map<string, CustomerReview>();
+            prev.forEach((r) => map.set(r.id, r));
+            cloudReviews.forEach((r) => map.set(r.id, r));
+            return Array.from(map.values());
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore customer_reviews sync notice:', err.message);
+      });
+
+      unsubProj = onSnapshot(collection(db, 'home_projects'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudProjects: HomeProjectRequest[] = [];
+          snapshot.forEach((d) => {
+            cloudProjects.push(d.data() as HomeProjectRequest);
+          });
+          setProjectRequests((prev) => {
+            const map = new Map<string, HomeProjectRequest>();
+            prev.forEach((p) => map.set(p.id, p));
+            cloudProjects.forEach((p) => map.set(p.id, p));
+            return Array.from(map.values());
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore home_projects sync notice:', err.message);
+      });
+
+      unsubComp = onSnapshot(collection(db, 'complaints'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudComplaints: ComplaintRecord[] = [];
+          snapshot.forEach((d) => {
+            cloudComplaints.push(d.data() as ComplaintRecord);
+          });
+          setComplaints((prev) => {
+            const map = new Map<string, ComplaintRecord>();
+            prev.forEach((c) => map.set(c.id, c));
+            cloudComplaints.forEach((c) => map.set(c.id, c));
+            return Array.from(map.values());
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore complaints sync notice:', err.message);
+      });
+    } catch (err) {
+      console.warn('Firestore real-time listeners initialization notice:', err);
+    }
+
+    return () => {
+      unsubReq();
+      unsubRev();
+      unsubProj();
+      unsubComp();
+    };
+  }, []);
 
   // Customers
   const [customers, setCustomers] = useState<CustomerRecord[]>(() => {
@@ -705,6 +887,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       ...complaint
     };
     setComplaints((prev) => [full, ...prev]);
+    persistComplaint(full).catch((err) => console.warn('Firestore persist complaint notice:', err));
     addAuditEntry('COMPLAINT_LOGGED', 'SERVICE_REQUEST', full.requestId, `Logged ${full.severity} complaint: ${full.issueType}`);
     showToast(`Complaint #${newId} logged for supervisor investigation`, 'warning');
   };
@@ -1046,6 +1229,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     setRequests((prev) => [newRequest, ...prev]);
+    persistServiceRequest(newRequest).catch((err) => console.warn('Firestore persist booking notice:', err));
     clearCart();
     addAuditEntry('REQUEST_CREATED', 'SERVICE_REQUEST', newId, `Order created for ${details.locality} (₹${cartTotal.total})`);
     showToast(`Order ${newId} confirmed! Sent to Operations queue for manual dispatch.`, 'success');
@@ -1110,6 +1294,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     setRequests((prev) => [newRequest, ...prev]);
+    persistServiceRequest(newRequest).catch((err) => console.warn('Firestore persist custom task notice:', err));
     addAuditEntry('CUSTOM_TASK_POSTED', 'SERVICE_REQUEST', newId, `Requirement: ${details.requirementText.substring(0, 40)}...`);
     showToast(`Custom task ${newId} submitted. Supervisor will review and call you.`, 'success');
     setActiveTrackingRequestId(newId);
@@ -1150,6 +1335,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     setProjectRequests((prev) => [newProject, ...prev]);
+    persistHomeProject(newProject).catch((err) => console.warn('Firestore persist project notice:', err));
     addAuditEntry('PROJECT_REQUESTED', 'SERVICE_REQUEST', newId, `Project: ${details.projectType} in ${details.locality}`);
     showToast(`Project quote request ${newId} logged! Civil supervisor assigned shortly.`, 'success');
     return newId;
@@ -2029,12 +2215,110 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     setReviews((prev) => [newRev, ...prev]);
+    persistCustomerReview(newRev).catch((err) => console.warn('Firestore persist review notice:', err));
     // update order
     setRequests((prev) =>
       prev.map((r) => (r.id === requestId ? { ...r, customerRating: rating, customerFeedback: feedback } : r))
     );
     showToast(`Thank you! Your feedback for ${newRev.technicianName} was submitted.`, 'success');
   };
+
+  // DPDP Act 2023 Compliance & Data Principal Rights Implementations
+  const updateDPDPConsent = (preferences: Partial<DPDPConsentPreferences>) => {
+    setDpdpConsent((prev) => ({
+      ...prev,
+      ...preferences,
+      consentedAt: new Date().toISOString()
+    }));
+    addAuditEntry(
+      'DPDP_CONSENT_UPDATED',
+      'SERVICE_REQUEST',
+      'USER_CONSENT',
+      `Updated preferences: ${JSON.stringify(preferences)}`,
+      currentUser?.name || 'Resident'
+    );
+    showToast('Your DPDP privacy preferences have been updated.', 'success');
+  };
+
+  const updateDPDPNominee = (nominee: DPDPNominee) => {
+    setDpdpNominee(nominee);
+    addAuditEntry(
+      'DPDP_NOMINEE_UPDATED',
+      'SERVICE_REQUEST',
+      'SEC_14_NOMINEE',
+      `Nominee recorded: ${nominee.fullName} (${nominee.relationship})`,
+      currentUser?.name || 'Resident'
+    );
+    showToast(`Nominee ${nominee.fullName} registered under Section 14 DPDP Act.`, 'success');
+  };
+
+  const fileDPDPGrievance = (
+    grievance: Omit<DPDPGrievance, 'id' | 'ticketNo' | 'status' | 'createdAt' | 'dpoOfficer'>
+  ): DPDPGrievance => {
+    const newGrievance: DPDPGrievance = {
+      ...grievance,
+      id: `grv-${Date.now()}`,
+      ticketNo: `DPDP-GRV-${Math.floor(1000 + Math.random() * 9000)}`,
+      status: 'SUBMITTED',
+      createdAt: new Date().toISOString(),
+      dpoOfficer: 'Mr. Gurpreet Singh (DPO, UrbanCare Solution, Kharar)'
+    };
+    setDpdpGrievances((prev) => [newGrievance, ...prev]);
+    addAuditEntry(
+      'DPDP_GRIEVANCE_FILED',
+      'SERVICE_REQUEST',
+      newGrievance.ticketNo,
+      `Category: ${newGrievance.type} - ${newGrievance.description.substring(0, 60)}...`,
+      newGrievance.userName
+    );
+    showToast(`Grievance ${newGrievance.ticketNo} submitted to Data Protection Officer.`, 'info');
+    return newGrievance;
+  };
+
+  const requestDataErasure = (reason = 'Right to Erasure under Section 12') => {
+    logoutCustomer();
+    setCart([]);
+    addAuditEntry(
+      'DPDP_ERASURE_REQUEST',
+      'SERVICE_REQUEST',
+      currentUser?.id || 'ANONYMOUS',
+      `Reason: ${reason}`,
+      currentUser?.name || 'Resident'
+    );
+    showToast('Personal data identifiers removed from browser storage. Erasure logged.', 'info');
+  };
+
+  const exportPersonalData = (): string => {
+    const personalRecord = {
+      title: 'UrbanCare Solution - Data Principal Personal Record Export',
+      statutoryBasis: 'Digital Personal Data Protection Act, 2023 (Section 11)',
+      exportedAt: new Date().toISOString(),
+      jurisdiction: 'Kharar & Mohali, SAS Nagar, Punjab, India',
+      profile: currentUser || { status: 'Guest User' },
+      activeConsentPreferences: dpdpConsent,
+      registeredNominee: dpdpNominee || 'No nominee appointed under Section 14',
+      serviceRequestsHistory: requests.map((r) => ({
+        id: r.id,
+        status: r.status,
+        locality: r.locality,
+        address: r.address,
+        createdAt: r.createdAt,
+        total: r.total,
+        services: r.items.map((i) => i.serviceName)
+      })),
+      projectRequests: projectRequests,
+      privacyGrievances: dpdpGrievances,
+      dataFiduciary: {
+        company: 'UrbanCare Solution',
+        dpoOfficer: 'Mr. Gurpreet Singh',
+        dpoContact: '+91 98882 10452',
+        dpoEmail: 'grievance@urbancaresolution.in',
+        officeAddress: 'SCF 14, Sector 125, Sunny Enclave, Kharar, Punjab 140301'
+      }
+    };
+    return JSON.stringify(personalRecord, null, 2);
+  };
+
 
   return (
     <AppContext.Provider
@@ -2131,7 +2415,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setCurrentUser,
         loginCustomer,
         registerCustomer,
-        logoutCustomer
+        logoutCustomer,
+        dpdpConsent,
+        updateDPDPConsent,
+        dpdpNominee,
+        updateDPDPNominee,
+        dpdpGrievances,
+        fileDPDPGrievance,
+        requestDataErasure,
+        exportPersonalData,
+        isDPDPNoticeOpen,
+        setIsDPDPNoticeOpen,
+        isDPDPConsentManagerOpen,
+        setIsDPDPConsentManagerOpen,
+        isDPDPDataRightsOpen,
+        setIsDPDPDataRightsOpen
       }}
     >
       {children}

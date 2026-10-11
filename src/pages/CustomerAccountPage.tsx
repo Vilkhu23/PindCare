@@ -11,7 +11,18 @@ import {
   ChevronRight,
   HardHat,
   User,
-  ShieldCheck
+  ShieldCheck,
+  Lock,
+  Sliders,
+  UserCheck,
+  Download,
+  Trash2,
+  UserPlus,
+  FileText,
+  Building,
+  PhoneCall,
+  Bell,
+  Sparkles
 } from 'lucide-react';
 
 export const CustomerAccountPage: React.FC = () => {
@@ -22,10 +33,17 @@ export const CustomerAccountPage: React.FC = () => {
     currentLocality,
     currentUser,
     setIsAuthModalOpen,
-    logoutCustomer
+    logoutCustomer,
+    dpdpConsent,
+    dpdpNominee,
+    dpdpGrievances,
+    exportPersonalData,
+    setIsDPDPNoticeOpen,
+    setIsDPDPConsentManagerOpen,
+    setIsDPDPDataRightsOpen
   } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'bookings' | 'projects' | 'addresses' | 'profile'>('bookings');
+  const [activeTab, setActiveTab] = useState<'bookings' | 'projects' | 'addresses' | 'dpdp'>('bookings');
 
   // Customer initials
   const initials = currentUser
@@ -113,6 +131,17 @@ export const CustomerAccountPage: React.FC = () => {
           }`}
         >
           Saved Addresses (3)
+        </button>
+        <button
+          onClick={() => setActiveTab('dpdp')}
+          className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1.5 ${
+            activeTab === 'dpdp'
+              ? 'bg-[#003523] text-white'
+              : 'text-[#003523] bg-[#c0edd3]/30 hover:bg-[#c0edd3]/60'
+          }`}
+        >
+          <ShieldCheck className="w-3.5 h-3.5" />
+          <span>DPDP Privacy & Rights</span>
         </button>
       </div>
 
@@ -239,6 +268,187 @@ export const CustomerAccountPage: React.FC = () => {
             <span className="font-bold text-[#131b2e]">Office / Commercial</span>
             <p className="text-[#131b2e]">SCF 19, Main Landran Road, Kharar</p>
             <div className="text-[11px] text-[#707973]">Landmark: Opposite college bus stand</div>
+          </div>
+        </div>
+      )}
+
+      {/* DPDP Act 2023 Privacy & Data Rights Tab */}
+      {activeTab === 'dpdp' && (
+        <div className="space-y-4">
+          {/* Statutory Preamble Banner */}
+          <div className="p-4 rounded-2xl bg-[#002114] text-white border border-[#144d37] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-start space-x-3">
+              <div className="w-10 h-10 rounded-xl bg-[#b6efd1] text-[#002114] flex items-center justify-center font-bold shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#003523]" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center space-x-2">
+                  <h3 className="font-extrabold text-sm text-white">DPDP Act 2023 Compliance Center</h3>
+                  <span className="text-[10px] bg-[#fe932c] text-[#002114] font-black px-1.5 py-0.5 rounded uppercase">
+                    Law of India
+                  </span>
+                </div>
+                <p className="text-xs text-[#b6efd1] leading-relaxed">
+                  UrbanCare Solution acts as a verified Data Fiduciary in Kharar & Mohali. We process personal data solely for home repair execution and 30-day workmanship warranty fulfillment.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsDPDPNoticeOpen(true)}
+              className="px-3.5 py-2 rounded-xl bg-[#b6efd1] hover:bg-[#85bda1] text-[#002114] font-bold text-xs whitespace-nowrap shadow-xs transition-all flex items-center space-x-1.5"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#003523]" />
+              <span>Read Section 5 Notice (EN/ਪੰਜਾਬੀ/HI)</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Card 1: Right to Access Information (Section 11) */}
+            <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <FileText className="w-4 h-4 text-[#003523]" />
+                  <h4 className="font-bold text-xs text-[#131b2e]">Right to Access Information (Sec 11)</h4>
+                </div>
+                <span className="text-[10px] bg-[#c0edd3] text-[#003523] px-2 py-0.5 rounded-full font-bold">
+                  Machine-Readable
+                </span>
+              </div>
+              <p className="text-xs text-[#404943] leading-relaxed">
+                Obtain a complete portable summary of personal records held, including booking logs, timestamps, technician dispatch assignments, and consent history.
+              </p>
+              <button
+                onClick={() => {
+                  const dataJson = exportPersonalData();
+                  const blob = new Blob([dataJson], { type: 'application/json' });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = `urbancare_dpdp_data_${Date.now()}.json`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                }}
+                className="w-full py-2 px-3 rounded-lg border border-[#003523] text-[#003523] hover:bg-[#c0edd3]/25 font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export My Data File (JSON)</span>
+              </button>
+            </div>
+
+            {/* Card 2: Purpose-Bound Consent Management (Section 6) */}
+            <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Sliders className="w-4 h-4 text-[#003523]" />
+                  <h4 className="font-bold text-xs text-[#131b2e]">Purpose & Consent Controls (Sec 6)</h4>
+                </div>
+                <span className="text-[10px] bg-[#eaedff] text-[#003523] px-2 py-0.5 rounded-full font-bold">
+                  {dpdpConsent.version}
+                </span>
+              </div>
+              <div className="space-y-1.5 text-[11px]">
+                <div className="flex justify-between items-center text-[#404943]">
+                  <span>Doorstep Service Fulfillment:</span>
+                  <span className="font-bold text-[#003523]">Active (Essential)</span>
+                </div>
+                <div className="flex justify-between items-center text-[#404943]">
+                  <span>Technician Call Masking:</span>
+                  <span className={`font-bold ${dpdpConsent.callMasking ? 'text-[#003523]' : 'text-[#ba1a1a]'}`}>
+                    {dpdpConsent.callMasking ? 'Shielded' : 'Disabled'}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-[#404943]">
+                  <span>WhatsApp / SMS ETA Alerts:</span>
+                  <span className={`font-bold ${dpdpConsent.dispatchUpdates ? 'text-[#003523]' : 'text-[#707973]'}`}>
+                    {dpdpConsent.dispatchUpdates ? 'Enabled' : 'Disabled'}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-[#404943]">
+                  <span>Seasonal Maintenance Reminders:</span>
+                  <span className={`font-bold ${dpdpConsent.promotionalMarketing ? 'text-[#003523]' : 'text-[#707973]'}`}>
+                    {dpdpConsent.promotionalMarketing ? 'Opted-in' : 'Default OFF'}
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsDPDPConsentManagerOpen(true)}
+                className="w-full py-2 px-3 rounded-lg bg-[#003523] hover:bg-[#144d37] text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
+              >
+                <Sliders className="w-3.5 h-3.5 text-[#fe932c]" />
+                <span>Manage & Withdraw Consents</span>
+              </button>
+            </div>
+
+            {/* Card 3: Statutory Right to Nominate (Section 14) */}
+            <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <UserPlus className="w-4 h-4 text-[#fe932c]" />
+                  <h4 className="font-bold text-xs text-[#131b2e]">Right to Nominate (Sec 14)</h4>
+                </div>
+                <span className="text-[10px] bg-[#ffdcc3] text-[#904d00] px-2 py-0.5 rounded-full font-bold">
+                  Statutory Protection
+                </span>
+              </div>
+              <p className="text-xs text-[#404943] leading-relaxed">
+                Nominate an individual to exercise your digital personal data rights in the event of death or incapacity.
+              </p>
+              {dpdpNominee ? (
+                <div className="p-2.5 rounded-lg bg-[#faf8ff] border border-[#c0c9c2]/50 text-[11px] space-y-0.5">
+                  <div className="font-bold text-[#003523]">{dpdpNominee.fullName} ({dpdpNominee.relationship})</div>
+                  <div className="text-[#707973]">{dpdpNominee.phone}</div>
+                </div>
+              ) : (
+                <div className="p-2.5 rounded-lg bg-gray-50 text-[11px] text-gray-500 italic">
+                  No nominee appointed yet.
+                </div>
+              )}
+              <button
+                onClick={() => setIsDPDPDataRightsOpen(true)}
+                className="w-full py-2 px-3 rounded-lg border border-[#c0c9c2] hover:bg-gray-50 text-[#131b2e] font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
+              >
+                <UserPlus className="w-3.5 h-3.5 text-[#003523]" />
+                <span>{dpdpNominee ? 'Update Nominee' : 'Appoint Nominee'}</span>
+              </button>
+            </div>
+
+            {/* Card 4: Grievance Redressal & Data Protection Officer (Section 13) */}
+            <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 shadow-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Building className="w-4 h-4 text-[#003523]" />
+                  <h4 className="font-bold text-xs text-[#131b2e]">Data Protection Officer (Sec 13)</h4>
+                </div>
+                <span className="text-[10px] bg-[#c0edd3] text-[#003523] px-2 py-0.5 rounded-full font-bold">
+                  7-Day SLA
+                </span>
+              </div>
+              <div className="text-xs text-[#404943] space-y-1">
+                <p><strong>Grievance Officer:</strong> Mr. Gurpreet Singh</p>
+                <p><strong>Office:</strong> SCF 14, Sector 125, Kharar, Punjab</p>
+                <p><strong>Direct Line:</strong> +91 98882 10452 | grievance@urbancaresolution.in</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setIsDPDPDataRightsOpen(true)}
+                  className="flex-1 py-2 px-3 rounded-lg bg-[#003523] hover:bg-[#144d37] text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
+                >
+                  <Building className="w-3.5 h-3.5 text-[#fe932c]" />
+                  <span>File Grievance Ticket</span>
+                </button>
+                <button
+                  onClick={() => setIsDPDPDataRightsOpen(true)}
+                  className="py-2 px-3 rounded-lg border border-[#ba1a1a] text-[#ba1a1a] hover:bg-[#ffdad6]/20 font-bold text-xs flex items-center space-x-1 transition-colors"
+                  title="Request Erasure"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Erasure</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

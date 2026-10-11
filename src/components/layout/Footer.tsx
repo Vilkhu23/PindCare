@@ -1,9 +1,15 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { ShieldCheck, Phone, MapPin, Mail, ArrowRight, Heart } from 'lucide-react';
+import { ShieldCheck, Phone, MapPin, Mail, ArrowRight, Heart, Lock, Sliders, UserCheck } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { setCurrentPage, setCurrentRole } = useApp();
+  const {
+    setCurrentPage,
+    setCurrentRole,
+    setIsDPDPNoticeOpen,
+    setIsDPDPConsentManagerOpen,
+    setIsDPDPDataRightsOpen
+  } = useApp();
 
   return (
     <footer className="bg-[#002114] text-white pt-12 pb-24 md:pb-12 border-t border-[#144d37]">
@@ -96,6 +102,33 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <button
+                  onClick={() => setIsDPDPNoticeOpen(true)}
+                  className="text-[#b6efd1] hover:underline font-semibold flex items-center space-x-1.5"
+                >
+                  <Lock className="w-3 h-3 text-[#fe932c]" />
+                  <span>DPDP Act 2023 Statutory Privacy Notice</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setIsDPDPConsentManagerOpen(true)}
+                  className="hover:text-white transition-colors flex items-center space-x-1.5"
+                >
+                  <Sliders className="w-3 h-3 text-[#b6efd1]" />
+                  <span>Consent Preferences Manager</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setIsDPDPDataRightsOpen(true)}
+                  className="hover:text-white transition-colors flex items-center space-x-1.5"
+                >
+                  <UserCheck className="w-3 h-3 text-[#b6efd1]" />
+                  <span>Data Principal Rights & Nomination (Sec 11-14)</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => {
                     setCurrentRole('employee');
                     setCurrentPage('employee');
@@ -157,15 +190,35 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-6 border-t border-[#144d37] flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-400 gap-3">
-          <div>
-            © {new Date().getFullYear()} UrbanCare Solution. All rights reserved. Built for Tricity households.
+          <div className="flex items-center space-x-2">
+            <span>© {new Date().getFullYear()} UrbanCare Solution. Built for Tricity households.</span>
+            <span className="hidden sm:inline">·</span>
+            <span className="inline-flex items-center space-x-1 text-[#b6efd1] font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#fe932c]" />
+              <span>DPDP Act 2023 Compliant Data Fiduciary</span>
+            </span>
           </div>
-          <div className="flex items-center space-x-4">
-            <span>Independent Operations Marketplace</span>
+          <div className="flex items-center space-x-3 text-xs">
+            <button
+              onClick={() => setIsDPDPNoticeOpen(true)}
+              className="text-gray-300 hover:text-white underline text-[11px]"
+            >
+              Privacy Notice
+            </button>
             <span>·</span>
-            <span>Transparent Demo Pricing</span>
+            <button
+              onClick={() => setIsDPDPConsentManagerOpen(true)}
+              className="text-gray-300 hover:text-white underline text-[11px]"
+            >
+              Consent Manager
+            </button>
             <span>·</span>
-            <span>30-Day Workmanship Warranty</span>
+            <button
+              onClick={() => setIsDPDPDataRightsOpen(true)}
+              className="text-gray-300 hover:text-white underline text-[11px]"
+            >
+              Data Rights & DPO
+            </button>
           </div>
         </div>
       </div>

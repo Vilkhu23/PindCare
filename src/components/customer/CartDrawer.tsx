@@ -28,7 +28,8 @@ export const CartDrawer: React.FC = () => {
     createBookingFromCart,
     setActiveTrackingRequestId,
     currentUser,
-    setIsAuthModalOpen
+    setIsAuthModalOpen,
+    setIsDPDPNoticeOpen
   } = useApp();
 
   const [customerName, setCustomerName] = useState(currentUser?.name || 'Amanjot Sandhu');
@@ -38,6 +39,8 @@ export const CartDrawer: React.FC = () => {
   const [preferredDate, setPreferredDate] = useState('Today');
   const [preferredTimeSlot, setPreferredTimeSlot] = useState('4:00 PM - 6:00 PM');
   const [notes, setNotes] = useState('');
+  const [dpdpConsentChecked, setDpdpConsentChecked] = useState(false);
+  const [consentError, setConsentError] = useState(false);
 
   React.useEffect(() => {
     if (currentUser) {
@@ -61,6 +64,11 @@ export const CartDrawer: React.FC = () => {
   const handleCheckout = (e: React.FormEvent) => {
     e.preventDefault();
     if (cart.length === 0) return;
+
+    if (!dpdpConsentChecked) {
+      setConsentError(true);
+      return;
+    }
 
     const newBookingId = createBookingFromCart({
       customerName,
@@ -322,6 +330,48 @@ export const CartDrawer: React.FC = () => {
                     Pay directly via UPI or Cash after you test and inspect the work. Our Kharar dispatch supervisor verifies the invoice.
                   </p>
                 </div>
+              </div>
+
+              {/* DPDP Act 2023 Mandatory Affirmative Notice & Consent */}
+              <div
+                className={`p-3 rounded-xl border transition-all space-y-1.5 ${
+                  consentError ? 'bg-[#ffdad6]/40 border-[#ba1a1a]' : 'bg-[#faf8ff] border-[#c0c9c2]/60'
+                }`}
+              >
+                <div className="flex items-start space-x-2.5">
+                  <input
+                    type="checkbox"
+                    id="cart-dpdp-consent"
+                    checked={dpdpConsentChecked}
+                    onChange={(e) => {
+                      setDpdpConsentChecked(e.target.checked);
+                      if (e.target.checked) setConsentError(false);
+                    }}
+                    className="w-4 h-4 text-[#003523] rounded accent-[#003523] shrink-0 mt-0.5 cursor-pointer"
+                  />
+                  <label
+                    htmlFor="cart-dpdp-consent"
+                    className="text-[11px] text-[#131b2e] leading-snug cursor-pointer select-none"
+                  >
+                    <span className="font-bold text-[#003523]">DPDP Act 2023 Consent: </span>
+                    I consent to UrbanCare Solution processing my name, phone & address strictly for technician dispatch and 30-day workmanship warranty fulfillment.
+                  </label>
+                </div>
+                <div className="flex items-center justify-between pl-6 text-[10px] text-[#707973]">
+                  <span>Purpose-bound · No data selling</span>
+                  <button
+                    type="button"
+                    onClick={() => setIsDPDPNoticeOpen(true)}
+                    className="text-[#003523] hover:underline font-bold"
+                  >
+                    Read Section 5 Notice
+                  </button>
+                </div>
+                {consentError && (
+                  <p className="text-[10px] text-[#ba1a1a] font-bold pl-6">
+                    * Please check the consent box to proceed under India DPDP Act 2023.
+                  </p>
+                )}
               </div>
             </form>
           )}

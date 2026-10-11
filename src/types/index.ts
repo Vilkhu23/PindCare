@@ -360,3 +360,40 @@ export interface CustomerReview {
   review: string;
   timestamp: string;
 }
+
+export interface DPDPConsentPreferences {
+  essentialService: boolean; // Purpose: Technician dispatch & Doorstep fulfillment
+  dispatchUpdates: boolean;  // Purpose: WhatsApp & SMS real-time technician status
+  promotionalMarketing: boolean; // Purpose: Seasonal offers & maintenance advisories (Default false)
+  callMasking: boolean;      // Purpose: Virtual proxy call routing to protect phone number (Default true)
+  consentedAt: string;
+  ipJurisdiction: string;
+  version: string;
+}
+
+export interface DPDPNominee {
+  fullName: string;
+  relationship: string;
+  phone: string;
+  email?: string;
+  updatedAt: string;
+}
+
+export interface DPDPGrievance {
+  id: string;
+  ticketNo: string;
+  userName: string;
+  userPhone: string;
+  type: 
+    | 'RIGHT_TO_ACCESS' 
+    | 'RIGHT_TO_CORRECTION' 
+    | 'RIGHT_TO_ERASURE' 
+    | 'CONSENT_WITHDRAWAL' 
+    | 'UNAUTHORIZED_PROCESSING' 
+    | 'GENERAL_PRIVACY';
+  description: string;
+  status: 'SUBMITTED' | 'UNDER_REVIEW' | 'RESOLVED';
+  createdAt: string;
+  dpoOfficer: string;
+  resolutionNotes?: string;
+}

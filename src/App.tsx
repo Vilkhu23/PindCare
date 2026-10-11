@@ -27,6 +27,10 @@ import { CustomRequirementModal } from './components/customer/CustomRequirementM
 import { ProjectQuoteModal } from './components/customer/ProjectQuoteModal';
 import { LocalitySelectorModal } from './components/customer/LocalitySelectorModal';
 import { AuthModal } from './components/customer/AuthModal';
+import { DPDPConsentBanner } from './components/dpdp/DPDPConsentBanner';
+import { DPDPNoticeModal } from './components/dpdp/DPDPNoticeModal';
+import { DPDPConsentManagerModal } from './components/dpdp/DPDPConsentManagerModal';
+import { DPDPDataRightsModal } from './components/dpdp/DPDPDataRightsModal';
 import { CheckCircle2, Info, AlertTriangle, AlertCircle, X } from 'lucide-react';
 
 const AppContent: React.FC = () => {
@@ -108,6 +112,12 @@ const AppContent: React.FC = () => {
       <ProjectQuoteModal />
       <LocalitySelectorModal />
       <AuthModal />
+
+      {/* DPDP Act 2023 Compliance Banner & Modals */}
+      <DPDPConsentBanner />
+      <DPDPNoticeModal />
+      <DPDPConsentManagerModal />
+      <DPDPDataRightsModal />
     </div>
   );
 };
