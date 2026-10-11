@@ -62,13 +62,11 @@ export const Navbar: React.FC = () => {
             </span>
             <button
               onClick={() => setIsLocalityModalOpen(true)}
-              className="hidden sm:inline-flex items-center space-x-1.5 text-gray-200 hover:text-white hover:underline transition-colors cursor-pointer"
-              title="Click to view all 11 Service Available Sectors and Enclaves"
+              className="hidden sm:inline-flex items-center space-x-1 text-gray-200 hover:text-white transition-colors cursor-pointer"
+              title="Click to select or view covered sectors"
             >
-              <span>Service Available In Sectors 94 to 111</span>
-              <span className="text-[10px] bg-[#144d37] text-[#b6efd1] px-1.5 py-0.2 rounded font-semibold border border-[#336851]/60">
-                View Zones & Locations
-              </span>
+              <span className="hover:underline">Service Available In Sectors 94 to 111</span>
+              <span className="text-[10px] text-[#b6efd1]">▾</span>
             </button>
           </div>
 
