@@ -3,6 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { AssignModal } from './AssignModal';
 import { VendorLedgerModal } from './VendorLedgerModal';
 import { EditPricingModal } from './EditPricingModal';
+import { AddServiceModal } from './AddServiceModal';
 import { ServiceRequestDetailModal } from './ServiceRequestDetailModal';
 import { AssignmentBoardModal } from './AssignmentBoardModal';
 import { RecordPaymentModal } from './RecordPaymentModal';
@@ -101,6 +102,7 @@ export const AdminPortal: React.FC = () => {
     priceHistory,
     updateServicePricing,
     toggleServiceActive,
+    addService,
     projectRequests,
     updateProjectStatus,
     reviews,
@@ -128,6 +130,7 @@ export const AdminPortal: React.FC = () => {
   const [assigningRequestId, setAssigningRequestId] = useState<string | null>(null);
   const [ledgerVendorId, setLedgerVendorId] = useState<string | null>(null);
   const [selectedEditService, setSelectedEditService] = useState<ServiceItem | null>(null);
+  const [isAddServiceModalOpen, setIsAddServiceModalOpen] = useState(false);
   const [selectedDetailRequestId, setSelectedDetailRequestId] = useState<string | null>(null);
 
   // Assignment Board Modal state
@@ -1421,6 +1424,13 @@ export const AdminPortal: React.FC = () => {
                     Active catalogue items with pricing types, warranty, and doorstep visit fees.
                   </p>
                 </div>
+                <button
+                  onClick={() => setIsAddServiceModalOpen(true)}
+                  className="px-4 py-2 rounded-xl bg-[#003523] hover:bg-[#144d37] text-white text-xs font-bold flex items-center space-x-1.5 shadow-xs transition-all cursor-pointer"
+                >
+                  <Plus className="w-4 h-4 text-[#fe932c]" />
+                  <span>Add New Service</span>
+                </button>
               </div>
 
               <div className="overflow-x-auto">
@@ -1591,29 +1601,39 @@ export const AdminPortal: React.FC = () => {
               </div>
 
               {/* Sub-tabs */}
-              <div className="flex items-center space-x-2 border-b border-[#c0c9c2]/40 pb-2">
-                <button
-                  onClick={() => setPricingSubTab('catalog')}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-                    pricingSubTab === 'catalog'
-                      ? 'bg-[#003523] text-white shadow-xs'
-                      : 'bg-white text-[#404943] border border-[#c0c9c2]/50'
-                  }`}
-                >
-                  <Tag className="w-3.5 h-3.5" />
-                  <span>Services Catalogue ({services.length})</span>
-                </button>
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#c0c9c2]/40 pb-2">
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setPricingSubTab('catalog')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
+                      pricingSubTab === 'catalog'
+                        ? 'bg-[#003523] text-white shadow-xs'
+                        : 'bg-white text-[#404943] border border-[#c0c9c2]/50'
+                    }`}
+                  >
+                    <Tag className="w-3.5 h-3.5" />
+                    <span>Services Catalogue ({services.length})</span>
+                  </button>
+
+                  <button
+                    onClick={() => setPricingSubTab('history')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
+                      pricingSubTab === 'history'
+                        ? 'bg-[#003523] text-white shadow-xs'
+                        : 'bg-white text-[#404943] border border-[#c0c9c2]/50'
+                    }`}
+                  >
+                    <History className="w-3.5 h-3.5" />
+                    <span>Price Revision Audit Trail ({priceHistory.length})</span>
+                  </button>
+                </div>
 
                 <button
-                  onClick={() => setPricingSubTab('history')}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 ${
-                    pricingSubTab === 'history'
-                      ? 'bg-[#003523] text-white shadow-xs'
-                      : 'bg-white text-[#404943] border border-[#c0c9c2]/50'
-                  }`}
+                  onClick={() => setIsAddServiceModalOpen(true)}
+                  className="px-4 py-2 rounded-xl bg-[#003523] hover:bg-[#144d37] text-white text-xs font-bold flex items-center space-x-1.5 shadow-xs transition-all cursor-pointer"
                 >
-                  <History className="w-3.5 h-3.5" />
-                  <span>Price Revision Audit Trail ({priceHistory.length})</span>
+                  <Plus className="w-4 h-4 text-[#fe932c]" />
+                  <span>Add New Service</span>
                 </button>
               </div>
 
@@ -2199,6 +2219,15 @@ export const AdminPortal: React.FC = () => {
           onSave={(id, updates, reason) => {
             updateServicePricing(id, updates, reason, 'Harman (Ops Lead)');
           }}
+        />
+      )}
+
+      {/* Add New Service Modal */}
+      {isAddServiceModalOpen && (
+        <AddServiceModal
+          isOpen={true}
+          onClose={() => setIsAddServiceModalOpen(false)}
+          onSave={addService}
         />
       )}
 
