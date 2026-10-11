@@ -363,7 +363,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Load or initialize Services
   const [services, setServices] = useState<ServiceItem[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.SERVICES);
-    return saved ? JSON.parse(saved) : INITIAL_SERVICES;
+    if (!saved) return INITIAL_SERVICES;
+    try {
+      const parsed: ServiceItem[] = JSON.parse(saved);
+      const existingIds = new Set(parsed.map((s) => s.id));
+      const missing = INITIAL_SERVICES.filter((s) => !existingIds.has(s.id));
+      return missing.length > 0 ? [...parsed, ...missing] : parsed;
+    } catch {
+      return INITIAL_SERVICES;
+    }
   });
 
   // Price History records

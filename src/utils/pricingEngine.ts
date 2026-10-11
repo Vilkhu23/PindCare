@@ -85,7 +85,7 @@ export function normalizeServiceItem(raw: Partial<ServiceItem> & Record<string, 
     excluded: excluded_items,
 
     badge: raw.badge,
-    serviceAreas: raw.serviceAreas || ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: raw.serviceAreas || ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: raw.sortOrder ?? 1,
     completedBookingsCount: raw.completedBookingsCount,
     rating: raw.rating,

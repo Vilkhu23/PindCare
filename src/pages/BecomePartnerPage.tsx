@@ -31,7 +31,7 @@ export const BecomePartnerPage: React.FC = () => {
       mobile,
       email: email || `${ownerName.toLowerCase().replace(/\s+/g, '')}@gmail.com`,
       categories: [category],
-      serviceAreas: [currentLocality, 'Sunny Enclave, Kharar', 'Sector 115, Kharar'],
+      serviceAreas: [currentLocality, 'Sector 104, Mohali', 'Sector 110, Mohali', 'Sector 94, Mohali'],
       experienceYears: Number(experienceYears),
       documentsVerified: false,
       status: 'PENDING_VERIFICATION',
@@ -65,7 +65,7 @@ export const BecomePartnerPage: React.FC = () => {
           Join UrbanCare Solution as a Registered Service Partner
         </h1>
         <p className="text-xs sm:text-sm text-[#b6efd1] max-w-2xl leading-relaxed">
-          Grow your local trade business across Kharar, Sunny Enclave, Sector 115, and Mohali with genuine Qualified Work Opportunities reviewed directly by our operations team.
+          Grow your local trade business across Sectors 94 to 111 (Mohali) with genuine Qualified Work Opportunities reviewed directly by our operations team.
         </p>
         <div className="pt-2">
           <button

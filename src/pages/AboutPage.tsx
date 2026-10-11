@@ -21,7 +21,7 @@ export const AboutPage: React.FC = () => {
           UrbanCare Solution: Rooted in Kharar & Mohali
         </h1>
         <p className="text-xs sm:text-sm text-gray-200 max-w-2xl leading-relaxed">
-          The rapidly growing urban corridor of Kharar, Sunny Enclave, Sector 115, and Landran deserves authentic, dependable domestic care. We built UrbanCare Solution to solve the trust deficit in home repairs.
+          The rapidly growing residential and institutional corridor across Sectors 94 to 111 (Mohali) deserves authentic, dependable domestic care. We built UrbanCare Solution to solve the trust deficit in home repairs.
         </p>
       </div>
 
@@ -63,20 +63,20 @@ export const AboutPage: React.FC = () => {
         <h3 className="text-base font-bold text-[#131b2e]">Neighborhood Coverage Hubs</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           <div className="p-3 rounded-lg bg-[#faf8ff] border border-[#c0c9c2]/40">
-            <div className="font-bold text-[#003523]">Sunny Enclave (Sec 125)</div>
-            <div className="text-[11px] text-[#707973] mt-0.5">Primary Operations Base</div>
+            <div className="font-bold text-[#003523]">Sector 94 (JLPL / Fateh Burj)</div>
+            <div className="text-[11px] text-[#707973] mt-0.5">Commercial & Residential Hub</div>
           </div>
           <div className="p-3 rounded-lg bg-[#faf8ff] border border-[#c0c9c2]/40">
-            <div className="font-bold text-[#003523]">Sector 115 & Gillco</div>
-            <div className="text-[11px] text-[#707973] mt-0.5">Society & High-Rise Unit</div>
+            <div className="font-bold text-[#003523]">Sectors 95–99 (GMADA / Wave)</div>
+            <div className="text-[11px] text-[#707973] mt-0.5">Planned Residential & Parks</div>
           </div>
           <div className="p-3 rounded-lg bg-[#faf8ff] border border-[#c0c9c2]/40">
-            <div className="font-bold text-[#003523]">Landran Road</div>
-            <div className="text-[11px] text-[#707973] mt-0.5">Hydraulics & Water Pump Hub</div>
+            <div className="font-bold text-[#003523]">Sectors 104–109 (Emaar Mohali)</div>
+            <div className="text-[11px] text-[#707973] mt-0.5">The Terraces, Views & Villas</div>
           </div>
           <div className="p-3 rounded-lg bg-[#faf8ff] border border-[#c0c9c2]/40">
-            <div className="font-bold text-[#003523]">Phase 7 & Mohali Belt</div>
-            <div className="text-[11px] text-[#707973] mt-0.5">Rapid Van Service Roster</div>
+            <div className="font-bold text-[#003523]">Sectors 110–111 (TDI City)</div>
+            <div className="text-[11px] text-[#707973] mt-0.5">Wellington & Connaught Place</div>
           </div>
         </div>
       </div>

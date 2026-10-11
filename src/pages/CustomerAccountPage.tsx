@@ -249,25 +249,25 @@ export const CustomerAccountPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
           <div className="p-4 bg-white rounded-xl border border-[#003523] space-y-2">
             <div className="flex justify-between items-center">
-              <span className="font-bold text-[#003523]">Primary Residence (Kharar)</span>
+              <span className="font-bold text-[#003523]">Primary Residence (Sector 104)</span>
               <span className="text-[10px] bg-[#c0edd3] text-[#003523] px-1.5 py-0.5 rounded font-bold">
                 DEFAULT
               </span>
             </div>
-            <p className="text-[#131b2e]">House 412, Sector 125, Sunny Enclave, Kharar, Punjab</p>
-            <div className="text-[11px] text-[#707973]">Landmark: Near Desu Majra flyover</div>
+            <p className="text-[#131b2e]">Villa 42, The Terraces, Sector 104, Mohali</p>
+            <div className="text-[11px] text-[#707973]">Landmark: Emaar Mohali Hills Luxury Belt</div>
           </div>
 
           <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 space-y-2">
-            <span className="font-bold text-[#131b2e]">Apartment (Sector 115)</span>
-            <p className="text-[#131b2e]">Flat 302, Palm Heights, Sector 115, Kharar</p>
-            <div className="text-[11px] text-[#707973]">Landmark: Gillco Parkhills road</div>
+            <span className="font-bold text-[#131b2e]">Apartment (Sector 110)</span>
+            <p className="text-[#131b2e]">Tower 4, Flat 602, Wellington Heights, TDI City, Sector 110, Mohali</p>
+            <div className="text-[11px] text-[#707973]">Landmark: TDI Wellington Park Gate</div>
           </div>
 
           <div className="p-4 bg-white rounded-xl border border-[#c0c9c2]/50 space-y-2">
-            <span className="font-bold text-[#131b2e]">Office / Commercial</span>
-            <p className="text-[#131b2e]">SCF 19, Main Landran Road, Kharar</p>
-            <div className="text-[11px] text-[#707973]">Landmark: Opposite college bus stand</div>
+            <span className="font-bold text-[#131b2e]">Office / Commercial (Sector 111)</span>
+            <p className="text-[#131b2e]">SCO 18, TDI Connaught Place, Sector 111, Mohali</p>
+            <div className="text-[11px] text-[#707973]">Landmark: Landran–Banur Road Junction</div>
           </div>
         </div>
       )}

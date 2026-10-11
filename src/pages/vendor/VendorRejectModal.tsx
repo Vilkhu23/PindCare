@@ -109,7 +109,7 @@ export const VendorRejectModal: React.FC<VendorRejectModalProps> = ({
               rows={3}
               value={customNote}
               onChange={(e) => setCustomNote(e.target.value)}
-              placeholder="e.g. Currently finishing work at Sector 115, estimated free time is after 7:30 PM..."
+              placeholder="e.g. Currently finishing work at Sector 104, estimated free time is after 7:30 PM..."
               className="w-full text-xs p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#003523]"
             />
           </div>

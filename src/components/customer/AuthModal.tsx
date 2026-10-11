@@ -29,7 +29,9 @@ export const AuthModal: React.FC = () => {
     setCurrentPage,
     setCurrentRole,
     customers,
-    showToast
+    showToast,
+    setIsDPDPNoticeOpen,
+    updateDPDPConsent
   } = useApp();
 
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -46,6 +48,8 @@ export const AuthModal: React.FC = () => {
   const [regEmail, setRegEmail] = useState('');
   const [regLocality, setRegLocality] = useState(currentLocality || LOCALITIES[0]);
   const [regAddress, setRegAddress] = useState('');
+  const [regConsentChecked, setRegConsentChecked] = useState(false);
+  const [regConsentError, setRegConsentError] = useState(false);
 
   if (!isAuthModalOpen) return null;
 
@@ -90,6 +94,12 @@ export const AuthModal: React.FC = () => {
       return;
     }
 
+    if (!regConsentChecked) {
+      setRegConsentError(true);
+      showToast('Please check the DPDP Act consent box to proceed', 'error');
+      return;
+    }
+
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -100,12 +110,22 @@ export const AuthModal: React.FC = () => {
         locality: regLocality,
         address: regAddress
       });
+      // Store one-time DPDP consent
+      updateDPDPConsent({
+        essentialService: true,
+        dispatchUpdates: true,
+        consentedAt: new Date().toISOString()
+      });
+      localStorage.setItem('urbancare_dpdp_banner_ack', 'true');
+
       setIsAuthModalOpen(false);
       // reset form
       setRegName('');
       setRegPhone('');
       setRegEmail('');
       setRegAddress('');
+      setRegConsentChecked(false);
+      setRegConsentError(false);
     }, 300);
   };
 
@@ -359,6 +379,18 @@ export const AuthModal: React.FC = () => {
                     </button>
                   )}
 
+                  <p className="text-[10px] text-[#707973] text-center pt-0.5">
+                    By continuing, you acknowledge our{' '}
+                    <button
+                      type="button"
+                      onClick={() => setIsDPDPNoticeOpen(true)}
+                      className="text-[#003523] underline font-bold"
+                    >
+                      DPDP Section 5 Privacy Notice
+                    </button>
+                    .
+                  </p>
+
                   {/* Quick One-Click Demo Residents */}
                   <div className="pt-3 border-t border-[#c0c9c2]/40">
                     <p className="text-[11px] font-bold text-[#707973] mb-2 uppercase tracking-wider flex items-center justify-between">
@@ -459,9 +491,54 @@ export const AuthModal: React.FC = () => {
                       type="text"
                       value={regAddress}
                       onChange={(e) => setRegAddress(e.target.value)}
-                      placeholder="e.g. House 54, Sector 125, Kharar"
+                      placeholder="e.g. Villa 42, The Terraces, Sector 104, Mohali"
                       className="w-full p-2 rounded-xl border border-[#c0c9c2] text-xs font-semibold focus:border-[#003523] focus:ring-1 focus:ring-[#003523]"
                     />
+                  </div>
+
+                  {/* One-Time DPDP Act 2023 Consent on Account Creation */}
+                  <div
+                    className={`p-3 rounded-xl border transition-all space-y-1.5 ${
+                      regConsentError
+                        ? 'bg-[#ffdad6]/40 border-[#ba1a1a]'
+                        : 'bg-[#faf8ff] border-[#c0c9c2]/60'
+                    }`}
+                  >
+                    <div className="flex items-start space-x-2">
+                      <input
+                        type="checkbox"
+                        id="reg-dpdp-consent"
+                        required
+                        checked={regConsentChecked}
+                        onChange={(e) => {
+                          setRegConsentChecked(e.target.checked);
+                          if (e.target.checked) setRegConsentError(false);
+                        }}
+                        className="w-4 h-4 text-[#003523] rounded accent-[#003523] shrink-0 mt-0.5 cursor-pointer"
+                      />
+                      <label
+                        htmlFor="reg-dpdp-consent"
+                        className="text-[11px] text-[#131b2e] leading-snug cursor-pointer select-none"
+                      >
+                        <span className="font-bold text-[#003523]">DPDP Act 2023 Consent (One-Time): </span>
+                        I freely consent to UrbanCare Solution processing my contact and doorstep address for technician dispatch and 30-day workmanship warranty fulfillment.
+                      </label>
+                    </div>
+                    <div className="flex items-center justify-between pl-6 text-[10px] text-[#707973]">
+                      <span>Purpose-bound · One-time consent</span>
+                      <button
+                        type="button"
+                        onClick={() => setIsDPDPNoticeOpen(true)}
+                        className="text-[#003523] hover:underline font-bold"
+                      >
+                        Read Section 5 Notice
+                      </button>
+                    </div>
+                    {regConsentError && (
+                      <p className="text-[10px] text-[#ba1a1a] font-bold pl-6">
+                        * Please check the consent box to create your account under the DPDP Act.
+                      </p>
+                    )}
                   </div>
 
                   <button

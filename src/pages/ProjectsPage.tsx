@@ -15,7 +15,8 @@ import {
   Zap,
   Droplets,
   Phone,
-  Sparkles
+  Sparkles,
+  Hammer
 } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
@@ -98,6 +99,13 @@ export const ProjectsPage: React.FC = () => {
       bracket: '₹3.5L - ₹15L+',
       unit: 'Full Milestones',
       icon: <ShieldCheck className="w-5 h-5 text-[#003523]" />
+    },
+    {
+      title: 'Gate & Grill Fabrication',
+      desc: 'Bespoke main boundary gates, MS balcony safety grills, SS 304 railings, laser-cut CNC panels & boundary fencing.',
+      bracket: '₹180 - ₹480 / sq.ft',
+      unit: 'Custom Fabrication',
+      icon: <Hammer className="w-5 h-5 text-[#904d00]" />
     }
   ];
 

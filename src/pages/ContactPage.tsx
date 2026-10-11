@@ -84,7 +84,7 @@ export const ContactPage: React.FC = () => {
               <input
                 type="text"
                 required
-                placeholder="Sunny Enclave / Sector 115"
+                placeholder="Sector 104 / Sector 110 (Sectors 94 to 111)"
                 className="w-full p-2.5 rounded-lg border border-[#c0c9c2]"
               />
             </div>

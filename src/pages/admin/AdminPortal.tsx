@@ -276,7 +276,7 @@ export const AdminPortal: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-[#707973] hidden sm:block">
-                Kharar · Mohali · Sunny Enclave · Sector 115 · Landran | Emergency: {opsSettings.emergencyHotline}
+                Mohali Service Corridors (Sectors 94 to 111) | Emergency: {opsSettings.emergencyHotline}
               </p>
             </div>
           </div>
@@ -844,13 +844,18 @@ export const AdminPortal: React.FC = () => {
                   onChange={(e) => setRequestLocalityFilter(e.target.value)}
                   className="p-2 rounded-xl border border-[#c0c9c2] text-xs font-semibold bg-white"
                 >
-                  <option value="ALL">All Localities</option>
-                  <option value="Sunny Enclave">Sunny Enclave, Kharar</option>
-                  <option value="Sector 115">Sector 115, Kharar</option>
-                  <option value="Landran">Landran Road, Kharar</option>
-                  <option value="Gillco">Gillco Valley, Kharar</option>
-                  <option value="Phase 7">Phase 7, Mohali</option>
-                  <option value="Sector 70">Sector 70, Mohali</option>
+                  <option value="ALL">All Sectors (94 to 111)</option>
+                  <option value="Sector 94">Sector 94 (JLPL)</option>
+                  <option value="Sectors 95">Sectors 95–97 (GMADA)</option>
+                  <option value="Sectors 98">Sectors 98–99 (Wave Estate)</option>
+                  <option value="Sector 100">Sector 100–101 (Plaksha)</option>
+                  <option value="Sector 104">Sector 104 (Emaar Mohali Hills)</option>
+                  <option value="Sector 105">Sector 105 (Emaar Central Plaza)</option>
+                  <option value="Sector 106">Sector 106–107</option>
+                  <option value="Sector 108">Sector 108</option>
+                  <option value="Sector 109">Sector 109 (The Bungalows)</option>
+                  <option value="Sector 110">Sector 110 (TDI City)</option>
+                  <option value="Sector 111">Sector 111 (TDI Connaught Place)</option>
                 </select>
               </div>
 
@@ -1944,7 +1949,7 @@ export const AdminPortal: React.FC = () => {
                   <span>Operations Analytics & Sub-Sector Reports</span>
                 </h2>
                 <p className="text-xs text-[#707973]">
-                  Performance metrics across Kharar, Sunny Enclave, Sector 115, and Mohali service corridors.
+                  Performance metrics across Sectors 94 to 111 service corridors (Mohali).
                 </p>
               </div>
 
@@ -1978,7 +1983,7 @@ export const AdminPortal: React.FC = () => {
               <div className="p-4 rounded-xl border border-[#c0c9c2]/40 bg-white space-y-3">
                 <h3 className="font-black text-sm text-[#131b2e]">Sub-Zone Order Distribution</h3>
                 <div className="space-y-2 text-xs">
-                  {['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Phase 7, Mohali', 'Landran Road, Kharar'].map((loc) => {
+                  {['Sector 94', 'Sectors 95–97', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'].map((loc) => {
                     const count = requests.filter((r) => r.locality.includes(loc.split(',')[0])).length;
                     const pct = Math.round((count / (requests.length || 1)) * 100);
                     return (

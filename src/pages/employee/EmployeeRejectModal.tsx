@@ -102,7 +102,7 @@ export const EmployeeRejectModal: React.FC<EmployeeRejectModalProps> = ({
               rows={2}
               value={customNote}
               onChange={(e) => setCustomNote(e.target.value)}
-              placeholder="e.g. Currently finishing work at Sector 115, capacitor replacement will take extra 30 mins..."
+              placeholder="e.g. Currently finishing work at Sector 110, capacitor replacement will take extra 30 mins..."
               className="w-full text-xs p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#003523]"
             />
           </div>

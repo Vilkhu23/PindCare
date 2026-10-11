@@ -49,6 +49,7 @@ export const ViewAllServicesModal: React.FC<ViewAllServicesModalProps> = ({
       case 'electrical': return <Zap className="w-4 h-4 text-[#904d00]" />;
       case 'plumbing': return <Droplets className="w-4 h-4 text-[#003523]" />;
       case 'carpentry': return <Hammer className="w-4 h-4 text-[#404943]" />;
+      case 'fabrication': return <Hammer className="w-4 h-4 text-[#904d00]" />;
       case 'painting': return <Paintbrush className="w-4 h-4 text-[#904d00]" />;
       case 'cleaning': return <Sparkles className="w-4 h-4 text-[#003523]" />;
       case 'pest-control': return <ShieldAlert className="w-4 h-4 text-[#ba1a1a]" />;

@@ -140,6 +140,7 @@ export const HomePage: React.FC = () => {
       case 'electrical': return <Zap className="w-5 h-5 text-[#904d00]" />;
       case 'plumbing': return <Droplets className="w-5 h-5 text-[#003523]" />;
       case 'carpentry': return <Hammer className="w-5 h-5 text-[#404943]" />;
+      case 'fabrication': return <Hammer className="w-5 h-5 text-[#904d00]" />;
       case 'painting': return <Paintbrush className="w-5 h-5 text-[#904d00]" />;
       case 'cleaning': return <Sparkles className="w-5 h-5 text-[#003523]" />;
       case 'pest-control': return <ShieldAlert className="w-5 h-5 text-[#ba1a1a]" />;
@@ -191,8 +192,8 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center space-x-2">
             <span className="w-2 h-2 rounded-full bg-[#fe932c] animate-pulse"></span>
-            <span className="font-bold text-[#b6efd1]">Kharar Central Operations Desk:</span>
-            <span className="text-gray-200">Dispatches active across {currentLocality}, Sector 115, Sunny Enclave & Landran</span>
+            <span className="font-bold text-[#b6efd1]">UrbanCare Operations Dispatch Desk:</span>
+            <span className="text-gray-200">Dispatches active across {currentLocality} (Sectors 94 to 111, Mohali)</span>
           </div>
           <div className="flex items-center space-x-4 text-[11px] text-gray-300">
             <span>Direct Dispatch: <strong className="text-white">+91 8284018909</strong></span>
@@ -209,9 +210,9 @@ export const HomePage: React.FC = () => {
           <div className="max-w-3xl space-y-2.5">
             <div className="flex items-center space-x-2 text-xs font-bold text-[#003523]">
               <span className="px-2.5 py-0.5 rounded-full bg-[#c0edd3]/60 text-[#003523] uppercase tracking-wider text-[11px]">
-                Tricity Local Home Care
+                Mohali Doorstep Care
               </span>
-              <span>· Kharar · Mohali · Sunny Enclave</span>
+              <span>· Sectors 94 to 111 · Mohali</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#131b2e] tracking-tight leading-tight">
               Honest Home Services & Repairs in Kharar & Mohali
@@ -445,7 +446,7 @@ export const HomePage: React.FC = () => {
           <div>
             <h2 className="text-xl font-extrabold text-[#131b2e]">Explore by Category</h2>
             <p className="text-xs text-[#707973]">
-              Verified local artisan teams active in Kharar, Mohali, Sunny Enclave & Landran
+              Verified local artisan teams active across Sectors 94 to 111 (Mohali)
             </p>
           </div>
           <button

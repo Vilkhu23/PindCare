@@ -168,6 +168,21 @@ export const SERVICE_CATEGORIES = [
     subcategories: ['Doors & Windows', 'Furniture & Assembly', 'General Handyman']
   },
   { 
+    id: 'fabrication', 
+    name: 'Gate & Grill Fabrication', 
+    icon: 'Hammer', 
+    count: 5, 
+    popular: true,
+    description: 'Main gate welding, safety balcony grills, iron boundary fencing, railing repairs & motorized sliding gates.',
+    subcategories: [
+      'Main Gates & Railings',
+      'Balcony Safety Grills',
+      'Welding & Hinge Repair',
+      'Window & Mesh Grills',
+      'Custom Metal Enclosures'
+    ]
+  },
+  { 
     id: 'cleaning', 
     name: 'Home Cleaning', 
     icon: 'Sparkles', 
@@ -264,7 +279,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Bestseller in Kharar',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 1,
     completedBookingsCount: 342,
     rating: 4.8,
@@ -308,7 +323,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Summer Essential',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali', 'VIP Road, Zirakpur'],
+    serviceAreas: ['Sector 94', 'Sectors 95–97', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 2,
     completedBookingsCount: 198,
     rating: 4.9,
@@ -347,7 +362,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Intense Clean',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 3,
     completedBookingsCount: 74,
     rating: 4.9,
@@ -384,7 +399,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Low Cost Diagnostic',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 4,
     completedBookingsCount: 120,
     rating: 4.7,
@@ -424,14 +439,14 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Same-Day Repair',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 5,
     completedBookingsCount: 165,
     rating: 4.8,
     faqs: [
       {
         question: 'Do you carry spare parts in the dispatch van?',
-        answer: 'Yes! Our technician vans stationed across Kharar and Sector 115 carry standard capacitors, sensors, relays, and copper flare fittings.'
+        answer: 'Yes! Our technician vans stationed across Sectors 94 to 111 carry standard capacitors, sensors, relays, and copper flare fittings.'
       }
     ],
     relatedServiceIds: ['srv-ac-inspect', 'srv-ac-gas', 'srv-ac-leak-repair'],
@@ -463,7 +478,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: '90-Day Gas Warranty',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 6,
     completedBookingsCount: 142,
     rating: 4.9,
@@ -499,7 +514,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'No-Drip Guarantee',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 7,
     completedBookingsCount: 89,
     rating: 4.7,
@@ -540,7 +555,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Precision Mounting',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 8,
     completedBookingsCount: 88,
     rating: 4.8,
@@ -577,7 +592,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Safe Removal',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110', 'Sector 111'],
     sortOrder: 9,
     completedBookingsCount: 52,
     rating: 4.8,
@@ -614,14 +629,14 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Turnkey Move',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 10,
     completedBookingsCount: 41,
     rating: 4.9,
     faqs: [
       {
         question: 'Can you relocate from Kharar to Mohali or Zirakpur?',
-        answer: 'Yes! Our operations vans service the entire Tricity corridor (Kharar, Sunny Enclave, Sector 115, Landran, Mohali, and Zirakpur).'
+        answer: 'Yes! Our operations vans service all covered residential corridors across Sectors 94 to 111 (Mohali).'
       }
     ],
     relatedServiceIds: ['srv-ac-install', 'srv-ac-foam'],
@@ -654,7 +669,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Quick Diagnostic',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 11,
     completedBookingsCount: 110,
     rating: 4.8,
@@ -690,7 +705,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'All Brands',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 12,
     completedBookingsCount: 95,
     rating: 4.7,
@@ -727,7 +742,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'TDS Certified',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 13,
     completedBookingsCount: 175,
     rating: 4.9,
@@ -763,7 +778,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Winter Care',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 14,
     completedBookingsCount: 82,
     rating: 4.8,
@@ -803,7 +818,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Quick 30-min Job',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 15,
     completedBookingsCount: 412,
     rating: 4.9,
@@ -839,7 +854,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Urgent Safety Need',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 16,
     completedBookingsCount: 154,
     rating: 4.8,
@@ -879,7 +894,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Critical Kharar Need',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 17,
     completedBookingsCount: 285,
     rating: 4.9,
@@ -915,7 +930,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Standard Fit',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110', 'Sector 111'],
     sortOrder: 18,
     completedBookingsCount: 310,
     rating: 4.7,
@@ -957,7 +972,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Top Rated',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 19,
     completedBookingsCount: 178,
     rating: 4.9,
@@ -997,7 +1012,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Artisan Fit',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110', 'Sector 111'],
     sortOrder: 20,
     completedBookingsCount: 96,
     rating: 4.8,
@@ -1037,7 +1052,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Punjab Monsoon Guard',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Gillco Valley, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110'],
     sortOrder: 21,
     completedBookingsCount: 64,
     rating: 4.7,
@@ -1077,7 +1092,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: '1-Year Shield',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 22,
     completedBookingsCount: 82,
     rating: 4.9,
@@ -1118,7 +1133,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: 'Turnkey Project',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 23,
     completedBookingsCount: 19,
     rating: 4.9,
@@ -1153,7 +1168,7 @@ const RAW_SERVICES: any[] = [
     ],
     badge: '7-Year Warranty',
     active: true,
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     sortOrder: 24,
     completedBookingsCount: 38,
     rating: 4.8,
@@ -1163,6 +1178,203 @@ const RAW_SERVICES: any[] = [
         answer: 'Terrace waterproofing requires assessing surface slope, hairline parapet cracks, and existing tiling. An accurate quote prevents surprise costs.'
       }
     ]
+  },
+  {
+    id: 'srv-gate-weld-repair',
+    name: 'Gate Hinge, Roller & Welding Repair',
+    category: 'Gate & Grill Fabrication',
+    subcategory: 'Welding & Hinge Repair',
+    description: 'On-site electric arc welding repair for squeaking, drooping, or stuck main gates, broken heavy-duty hinges, bottom roller replacement & alignment for smooth sliding.',
+    basePrice: 449,
+    originalPrice: 599,
+    discount: '25% OFF',
+    visitFee: 0,
+    pricingType: 'fixed',
+    materialPolicy: 'Includes welding rods, angle grinders, and basic fastener hardware. Replacement heavy-duty rollers or hinges charged on actual MRP receipt.',
+    estimatedDuration: '45 - 60 mins',
+    warranty: '30-Day Workmanship Warranty',
+    included: [
+      'Heavy-duty electric arc welding on cracked joints or snapped brackets',
+      'Gate hinge lubrication, anti-sag alignment and clearance check',
+      'Bottom sliding track leveling and ball-bearing roller greasing',
+      'Latch, tower bolt and drop-pin locking alignment'
+    ],
+    excluded: [
+      'Full gate replacement or new structural steel members',
+      'Enamel painting / primer touch-up across the entire gate'
+    ],
+    badge: 'Same-Day Urgent Dispatch',
+    active: true,
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
+    sortOrder: 25,
+    completedBookingsCount: 124,
+    rating: 4.9,
+    faqs: [
+      {
+        question: 'Does the technician carry their own electric welding machine and power extension cables?',
+        answer: 'Yes! Our dispatch van arrives fully equipped with a portable electric arc inverter welder, heavy-duty industrial extension cord, safety shields, and angle grinders.'
+      },
+      {
+        question: 'Can you fix heavy sliding gates that keep jumping off the track?',
+        answer: 'Yes. The technician checks track debris, straightens bent guide rails, and replaces worn-out concave ball-bearing wheels on the spot.'
+      }
+    ],
+    relatedServiceIds: ['srv-balcony-safety-grill', 'srv-main-gate-custom'],
+    frequentlyBookedTogetherIds: ['srv-door-repair']
+  },
+  {
+    id: 'srv-balcony-safety-grill',
+    name: 'Balcony Safety Grill Fabrication & Fitting',
+    category: 'Gate & Grill Fabrication',
+    subcategory: 'Balcony Safety Grills',
+    description: 'Custom heavy-gauge MS (Mild Steel) square-pipe safety grill fabrication for high-rise apartment balconies, utility areas, and child-safe window enclosures.',
+    basePrice: 180,
+    originalPrice: 240,
+    discount: '25% OFF',
+    visitFee: 0,
+    pricingType: 'per_unit',
+    materialPolicy: 'Includes laser site measurement, raw Jindal/Tata MS square tubes, red-oxide primer coat, anchor fasteners & on-site fitting.',
+    estimatedDuration: '2 - 3 Days (Measurement + Workshop Fabrication + Install)',
+    warranty: '1-Year Structural Fabrication Warranty',
+    included: [
+      'Doorstep measurement by fabrication engineer with design catalog',
+      'Heavy-gauge 18-gauge MS square pipe / ornamental round bars',
+      'Anti-rust red oxide primer dip coating',
+      'High-tensile heavy anchor fasteners secured into concrete lintel'
+    ],
+    excluded: [
+      'Civil wall plaster repair beyond anchor drill points',
+      'Final high-gloss paint coat (primer included)'
+    ],
+    badge: 'High-Rise Apartment Special',
+    active: true,
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
+    sortOrder: 26,
+    completedBookingsCount: 89,
+    rating: 4.8,
+    faqs: [
+      {
+        question: 'How are prices calculated for balcony grills?',
+        answer: 'Pricing is based on measured surface area (Height × Width in sq.ft) and the thickness/gauge of the MS pipes selected from our sample catalog.'
+      },
+      {
+        question: 'Is building society / RWA permission assisted?',
+        answer: 'Yes. We build according to standard society height specifications (typically 4.5 ft to 6.5 ft) compliant with Mohali high-rise bylaws.'
+      }
+    ],
+    relatedServiceIds: ['srv-window-safety-mesh', 'srv-ss-staircase-railing']
+  },
+  {
+    id: 'srv-main-gate-custom',
+    name: 'Custom Designer Main Gate Fabrication',
+    category: 'Gate & Grill Fabrication',
+    subcategory: 'Main Gates & Railings',
+    description: 'Bespoke modern main boundary gates for kothis and villas across Sectors 94–111. Options include laser-cut CNC metal sheet designs, wooden WPC slat inserts, wrought iron, or motorized sliding track frames.',
+    basePrice: 380,
+    originalPrice: 480,
+    discount: '20% OFF',
+    visitFee: 0,
+    pricingType: 'per_unit',
+    materialPolicy: 'Quoted on actual weight or sq.ft basis. Branded heavy steel sections (Tata Structura / Apollo) with computerized cutting.',
+    estimatedDuration: '4 - 7 Days',
+    warranty: '3-Year Structural Workmanship Warranty',
+    included: [
+      'Architectural design consultation & 3D catalog selection at doorstep',
+      'Heavy structural frame (50x50mm or 75x40mm hollow pipes)',
+      'Anti-rust epoxy primer application',
+      'Heavy-duty pivot bearing hinges or imported nylon bottom wheels',
+      'Civil anchor welding and plumb-line installation'
+    ],
+    excluded: [
+      'Automated motor installation (available as addon)'
+    ],
+    badge: 'Villa & Kothi Special',
+    active: true,
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
+    sortOrder: 27,
+    completedBookingsCount: 62,
+    rating: 4.9,
+    faqs: [
+      {
+        question: 'Do you offer modern laser-cut CNC leaf/geometric patterns?',
+        answer: 'Yes! We have over 120 CNC sheet designs in 2mm to 4mm sheet thickness that integrate seamlessly into heavy steel box pipe outer frames.'
+      }
+    ],
+    relatedServiceIds: ['srv-gate-weld-repair', 'srv-ss-staircase-railing']
+  },
+  {
+    id: 'srv-ss-staircase-railing',
+    name: 'Stainless Steel (SS 304) Staircase & Balcony Railing',
+    category: 'Gate & Grill Fabrication',
+    subcategory: 'Main Gates & Railings',
+    description: 'Rust-proof Jindal SS 304 grade mirror/matte finish pipe railings with toughened safety glass or horizontal security pipes for internal duplex stairs and terrace parapets.',
+    basePrice: 420,
+    originalPrice: 550,
+    discount: '24% OFF',
+    visitFee: 0,
+    pricingType: 'per_unit',
+    materialPolicy: 'Authentic Jindal SS-304 chemical acid tested with laser markings. Argon TIG welded.',
+    estimatedDuration: '2 - 4 Days',
+    warranty: '5-Year Anti-Rust Material Guarantee',
+    included: [
+      'Argon gas TIG welding with seamless blended buffing',
+      'High-precision floor core-cutting and epoxy chemical anchoring',
+      'Mirror or satin-matte buffed polish finish',
+      'Heavy 38mm / 50mm handrail pipe with baluster posts'
+    ],
+    excluded: [
+      'Toughened glass tinting (clear glass included if selected)'
+    ],
+    badge: 'Lifetime Rust Free',
+    active: true,
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
+    sortOrder: 28,
+    completedBookingsCount: 74,
+    rating: 4.9,
+    faqs: [
+      {
+        question: 'How do I know this is genuine Grade 304 stainless steel and not Grade 202?',
+        answer: 'Our supervisor performs an on-site M2 chemical acid droplet test in front of you. Authentic 304 does not turn red/brown, guaranteeing complete rust-proofing against rainwater.'
+      }
+    ],
+    relatedServiceIds: ['srv-balcony-safety-grill', 'srv-main-gate-custom']
+  },
+  {
+    id: 'srv-window-safety-mesh',
+    name: 'Window Security Grill & Mosquito Mesh Enclosure',
+    category: 'Gate & Grill Fabrication',
+    subcategory: 'Window & Mesh Grills',
+    description: 'Dual-protection window frames combining burglar-proof wrought iron bars with magnetic/hinged stainless steel mosquito wire mesh frames.',
+    basePrice: 145,
+    originalPrice: 195,
+    discount: '25% OFF',
+    visitFee: 0,
+    pricingType: 'per_unit',
+    materialPolicy: 'Heavy iron flat/square bars + SS 304 grade invisible/mosquito wire mesh.',
+    estimatedDuration: '1 - 2 Days',
+    warranty: '1-Year Workmanship Warranty',
+    included: [
+      'Accurate window frame outer-edge measurements',
+      'Iron bar safety structure with welded corner braces',
+      'Removable/hinged stainless wire mesh for easy glass cleaning',
+      'Heavy anchor bolt fitting into exterior brickwork/concrete'
+    ],
+    excluded: [
+      'Wooden window frame replacement'
+    ],
+    badge: 'Dual Protection',
+    active: true,
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
+    sortOrder: 29,
+    completedBookingsCount: 112,
+    rating: 4.8,
+    faqs: [
+      {
+        question: 'Can this be installed on existing aluminum or UPVC sliding windows?',
+        answer: 'Yes. We fabricate external brick-anchored frames that sit flush on the outside wall without drilling into your UPVC profiles.'
+      }
+    ],
+    relatedServiceIds: ['srv-balcony-safety-grill']
   }
 ];
 
@@ -1237,7 +1449,7 @@ export const INITIAL_PACKAGES: ServicePackage[] = [
       'Drain tray sanitization',
       'Zero doorstep visit fee included'
     ],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     active: true,
     pricingType: 'package',
     rating: 4.9,
@@ -1265,7 +1477,7 @@ export const INITIAL_PACKAGES: ServicePackage[] = [
       'Run capacitor and electrical contactor safety test',
       '60 Days Cooling Assurance'
     ],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     active: true,
     pricingType: 'package',
     rating: 4.9,
@@ -1293,7 +1505,7 @@ export const INITIAL_PACKAGES: ServicePackage[] = [
       'Inverter battery specific gravity test',
       'Full safety report card'
     ],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     active: true,
     pricingType: 'package',
     rating: 4.8
@@ -1314,7 +1526,7 @@ export const INITIAL_PACKAGES: ServicePackage[] = [
       'Grout scrubbing with single-disc machine',
       'Sanitizing fog spray'
     ],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     active: true,
     pricingType: 'package',
     rating: 4.9
@@ -1330,7 +1542,7 @@ export const INITIAL_VENDORS: Vendor[] = [
     mobile: '+91 94172 88412',
     email: 'malwacooling@gmail.com',
     categories: ['AC & Appliances', 'Electrical'],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110', 'Sector 111'],
     experienceYears: 8,
     documentsVerified: true,
     status: 'ACTIVE',
@@ -1355,7 +1567,7 @@ export const INITIAL_VENDORS: Vendor[] = [
     mobile: '+91 98144 33019',
     email: 'kuldeep.plumbing@gmail.com',
     categories: ['Plumbing'],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Landran Road, Kharar', 'Gillco Valley, Kharar'],
+    serviceAreas: ['Sector 94', 'Sectors 98–99', 'Sector 104', 'Sector 110', 'Sector 111'],
     experienceYears: 11,
     documentsVerified: true,
     status: 'ACTIVE',
@@ -1405,7 +1617,7 @@ export const INITIAL_VENDORS: Vendor[] = [
     mobile: '+91 97791 22811',
     email: 'shinemaster.tricity@gmail.com',
     categories: ['Home Cleaning', 'Pest Control'],
-    serviceAreas: ['Phase 7, Mohali', 'Sector 115, Kharar', 'VIP Road, Zirakpur'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110', 'Sector 111'],
     experienceYears: 6,
     documentsVerified: true,
     status: 'ACTIVE',
@@ -1432,7 +1644,7 @@ export const INITIAL_EMPLOYEES: Employee[] = [
     mobile: '+91 98882 10452',
     skills: ['Split AC Master', 'Inverter PCB Wiring', 'Refrigeration Lead'],
     categories: ['AC & Appliances', 'Electrical'],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Gillco Valley, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 104', 'Sector 110'],
     availability: 'AVAILABLE',
     status: 'ACTIVE',
     activeJobs: 0,
@@ -1460,7 +1672,7 @@ export const INITIAL_EMPLOYEES: Employee[] = [
     mobile: '+91 94631 82014',
     skills: ['Distribution Box Wiring', 'Earthing Pit Digging', 'Lighting Specialist'],
     categories: ['Electrical'],
-    serviceAreas: ['Sunny Enclave, Kharar', 'Sector 115, Kharar', 'Phase 7, Mohali'],
+    serviceAreas: ['Sector 104', 'Sector 105', 'Sector 110', 'Sector 111'],
     availability: 'AVAILABLE',
     status: 'ACTIVE',
     activeJobs: 0,
@@ -1525,8 +1737,8 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
     customerName: 'Jaspreet Brar',
     customerPhone: '+91 98761 22840',
     customerEmail: 'jaspreet.brar@gmail.com',
-    locality: 'Sector 115, Kharar',
-    address: 'Kothi 114, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Villa 42, The Terraces, Sector 104, Mohali',
     landmark: 'Near Ananda Greens Gate 2',
     requestType: 'STANDARD_SERVICE',
     items: [
@@ -1565,7 +1777,7 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
         assignedToName: 'Gurpreet Singh',
         assigneeType: 'EMPLOYEE',
         timestamp: '2026-10-06 11:30 AM',
-        reason: 'Master AC certified employee on Sunny Enclave / Sector 115 route',
+        reason: 'Master AC certified employee on Sectors 94 to 111 route',
         notes: 'Priority resident booking.'
       }
     ],
@@ -1763,8 +1975,8 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
     id: 'PB-8819',
     customerName: 'Raman Preet Kaur',
     customerPhone: '+91 98150 44211',
-    locality: 'Sector 115, Kharar',
-    address: 'Flat 302, Palm Heights, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Tower 4, Flat 602, Wellington Heights, Sector 110, Mohali',
     landmark: 'Behind Gillco Parkhills',
     requestType: 'STANDARD_SERVICE',
     items: [
@@ -1788,7 +2000,7 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
     statusHistory: [
       { status: 'NEW', timestamp: '2026-10-05 04:30 PM', updatedBy: 'Customer App', note: 'Booking submitted.' },
       { status: 'UNDER REVIEW', timestamp: '2026-10-05 04:45 PM', updatedBy: 'Operations Dispatcher', note: 'Diagnosed as pump capacitor issue.' },
-      { status: 'READY FOR ASSIGNMENT', timestamp: '2026-10-05 05:00 PM', updatedBy: 'Operations Dispatcher', note: 'Queued for Sector 115 plumbing specialist.' },
+      { status: 'READY FOR ASSIGNMENT', timestamp: '2026-10-05 05:00 PM', updatedBy: 'Operations Dispatcher', note: 'Queued for Sector 110 plumbing specialist.' },
       { status: 'ASSIGNED', timestamp: '2026-10-05 05:15 PM', updatedBy: 'Operations Supervisor (Harman)', note: 'Assigned to Kuldeep Sharma. Tool kit verified.' }
     ],
     assignmentHistory: [
@@ -1934,8 +2146,8 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
     id: 'PB-8826',
     customerName: 'Jaswinder Kaur',
     customerPhone: '+91 98889 44321',
-    locality: 'Sector 115, Kharar',
-    address: 'Flat 404, Tower B, Aman City, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'SCO 18, TDI Connaught Place, Sector 111, Mohali',
     landmark: 'Behind Shivalik City',
     requestType: 'STANDARD_SERVICE',
     items: [
@@ -2087,8 +2299,8 @@ export const INITIAL_REQUESTS: ServiceRequest[] = [
     customerName: 'Harpreet Singh Walia',
     customerPhone: '+91 98881 22904',
     customerEmail: 'harpreet.walia@gmail.com',
-    locality: 'Sector 115, Kharar',
-    address: 'Flat 602, Tower 3, Palm Village, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Flat 502, The Views, Sector 105, Mohali',
     landmark: 'Opposite State Bank of India',
     requestType: 'STANDARD_SERVICE',
     items: [
@@ -2218,8 +2430,8 @@ export const INITIAL_CUSTOMERS: CustomerRecord[] = [
     name: 'Raman Preet Kaur',
     phone: '+91 98150 44211',
     email: 'ramanpreet.k@outlook.com',
-    locality: 'Sector 115, Kharar',
-    address: 'Flat 302, Palm Heights, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Tower 4, Flat 602, Wellington Heights, Sector 110, Mohali',
     totalBookings: 2,
     totalSpent: 1196,
     registeredDate: '2026-08-20',
@@ -2254,8 +2466,8 @@ export const INITIAL_CUSTOMERS: CustomerRecord[] = [
     name: 'Dr. Paramjit Grewal',
     phone: '+91 98140 77123',
     email: 'drparamjitg@gmail.com',
-    locality: 'Sector 115, Kharar',
-    address: 'Villa 14, Palm Village, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Villa 18, The Bungalows, Sector 109, Mohali',
     totalBookings: 2,
     totalSpent: 12500,
     registeredDate: '2026-05-18',
@@ -2342,7 +2554,7 @@ export const INITIAL_OPS_SETTINGS: OpsSettings = [
     operatingHours: '08:00 AM - 08:30 PM (7 Days a Week)',
     activeLocalities: [
       'Sunny Enclave, Kharar',
-      'Sector 115, Kharar',
+      'Sector 104, Mohali',
       'Landran Road, Kharar',
       'Gillco Valley, Kharar',
       'Phase 7, Mohali',
@@ -2357,8 +2569,8 @@ export const INITIAL_PROJECT_REQUESTS: HomeProjectRequest[] = [
     id: 'PRJ-401',
     customerName: 'Dr. Paramjit Grewal',
     customerPhone: '+91 98140 77123',
-    locality: 'Sector 115, Kharar',
-    address: 'Villa 14, Palm Village, Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
+    address: 'Villa 18, The Bungalows, Sector 109, Mohali',
     projectType: 'Modular Kitchen Fabrication',
     propertyType: 'Independent Kothi',
     approxAreaSqFt: 180,
@@ -2404,7 +2616,7 @@ export const INITIAL_REVIEWS: CustomerReview[] = [
     id: 'rev-2',
     requestId: 'PB-8790',
     customerName: 'Simranjeet K.',
-    locality: 'Sector 115, Kharar',
+    locality: 'Sector 104, Mohali',
     serviceName: 'Water Motor / Pump Repair',
     technicianName: 'Kuldeep Sharma',
     rating: 5,
@@ -2485,7 +2697,7 @@ export const INITIAL_OPPORTUNITY_LEDGER: OpportunityLedgerEntry[] = [
     action: 'OPPORTUNITY_CONSUMED',
     change: -1,
     balanceAfter: 5,
-    reason: 'Manual supervisor assignment for PB-8811 (Sector 115 Split AC)',
+    reason: 'Manual supervisor assignment for PB-8811 (Sector 104 Split AC)',
     performedBy: 'Harman (Ops Lead)',
     timestamp: '2026-10-04 03:15 PM',
     serviceRequestId: 'PB-8811'

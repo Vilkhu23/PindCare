@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-xs text-gray-300 leading-relaxed">
-              Operations-led local home services and project marketplace for Kharar, Mohali, Sunny Enclave, Sector 115, and Landran. Every request manually verified and assigned by our local dispatch team.
+              Operations-led local home services and project marketplace for Sectors 94 to 111 (Mohali). Every request manually verified and assigned by our local dispatch team.
             </p>
             <div className="flex items-center space-x-2 text-xs text-[#b6efd1] pt-1">
               <ShieldCheck className="w-4 h-4 text-[#fe932c]" />
@@ -184,7 +184,7 @@ export const Footer: React.FC = () => {
               <span>dispatch@urbancaresolution.in</span>
             </div>
             <div className="p-2.5 rounded-lg bg-[#144d37]/40 border border-[#336851]/40 text-[11px] text-gray-200">
-              ⚡ Local dispatch vans positioned across Sector 115, Landran, Gillco & Phase 7 Mohali.
+              ⚡ Dedicated local dispatch vans active across Sectors 94 to 111 (JLPL, GMADA, Wave Estate, Emaar Mohali Hills & TDI City).
             </div>
           </div>
         </div>
