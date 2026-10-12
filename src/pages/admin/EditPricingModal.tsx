@@ -27,42 +27,42 @@ export const EditPricingModal: React.FC<EditPricingModalProps> = ({
   onClose,
   onSave
 }) => {
-  if (!isOpen || !service) return null;
-
   const [priceType, setPriceType] = useState<PriceType>(
-    service.price_type || (service.pricingType?.toString().toUpperCase() as PriceType) || 'FIXED'
+    service?.price_type || (service?.pricingType?.toString().toUpperCase() as PriceType) || 'FIXED'
   );
   const [basePrice, setBasePrice] = useState<number>(
-    service.base_price ?? service.basePrice ?? 0
+    service?.base_price ?? service?.basePrice ?? 0
   );
   const [originalPrice, setOriginalPrice] = useState<number>(
-    service.original_price ?? service.originalPrice ?? 0
+    service?.original_price ?? service?.originalPrice ?? 0
   );
-  const [discount, setDiscount] = useState<string>(service.discount || '');
+  const [discount, setDiscount] = useState<string>(service?.discount || '');
   const [visitFee, setVisitFee] = useState<number>(
-    service.visit_fee ?? service.visitFee ?? 99
+    service?.visit_fee ?? service?.visitFee ?? 99
   );
-  const [tax, setTax] = useState<number>(service.tax ?? 0);
+  const [tax, setTax] = useState<number>(service?.tax ?? 0);
   const [duration, setDuration] = useState<string>(
-    service.duration || service.estimatedDuration || '45 - 60 mins'
+    service?.duration || service?.estimatedDuration || '45 - 60 mins'
   );
-  const [warranty, setWarranty] = useState<string>(service.warranty || '30 Days Warranty');
+  const [warranty, setWarranty] = useState<string>(service?.warranty || '30 Days Warranty');
   const [materialPolicy, setMaterialPolicy] = useState<string>(
-    service.material_policy || service.materialPolicy || ''
+    service?.material_policy || service?.materialPolicy || ''
   );
   const [includedText, setIncludedText] = useState<string>(
-    (service.included_items || service.included || []).join('\n')
+    (service?.included_items || service?.included || []).join('\n')
   );
   const [excludedText, setExcludedText] = useState<string>(
-    (service.excluded_items || service.excluded || []).join('\n')
+    (service?.excluded_items || service?.excluded || []).join('\n')
   );
   const [effectiveFrom, setEffectiveFrom] = useState<string>(
-    service.effective_from || new Date().toISOString().split('T')[0]
+    service?.effective_from || new Date().toISOString().split('T')[0]
   );
-  const [effectiveTo, setEffectiveTo] = useState<string>(service.effective_to || '');
-  const [active, setActive] = useState<boolean>(service.active);
+  const [effectiveTo, setEffectiveTo] = useState<string>(service?.effective_to || '');
+  const [active, setActive] = useState<boolean>(service?.active ?? true);
   const [reason, setReason] = useState<string>('Standard periodic pricing review');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  if (!isOpen || !service) return null;
 
   // Temporary mock object for live preview
   const previewItem: ServiceItem = {

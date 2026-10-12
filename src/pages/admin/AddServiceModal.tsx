@@ -23,8 +23,6 @@ export const AddServiceModal: React.FC<AddServiceModalProps> = ({
   onClose,
   onSave
 }) => {
-  if (!isOpen) return null;
-
   const [name, setName] = useState('');
   const [category, setCategory] = useState(SERVICE_CATEGORIES[0].name);
   const selectedCatObj = SERVICE_CATEGORIES.find((c) => c.name === category) || SERVICE_CATEGORIES[0];
@@ -104,6 +102,8 @@ export const AddServiceModal: React.FC<AddServiceModalProps> = ({
     onSave(newService);
     onClose();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">

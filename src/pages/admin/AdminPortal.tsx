@@ -2347,21 +2347,23 @@ export const AdminPortal: React.FC = () => {
       )}
 
       {/* 8. Onboard & Edit Employee / Role Modal */}
-      <EmployeeModal
-        isOpen={isEmployeeModalOpen}
-        onClose={() => {
-          setIsEmployeeModalOpen(false);
-          setEditingEmployee(null);
-        }}
-        initialEmployee={editingEmployee}
-        onSave={(empData, isEdit) => {
-          if (isEdit) {
-            updateEmployee(empData.id, empData);
-          } else {
-            addEmployee(empData);
-          }
-        }}
-      />
+      {isEmployeeModalOpen && (
+        <EmployeeModal
+          isOpen={true}
+          onClose={() => {
+            setIsEmployeeModalOpen(false);
+            setEditingEmployee(null);
+          }}
+          initialEmployee={editingEmployee}
+          onSave={(empData, isEdit) => {
+            if (isEdit) {
+              updateEmployee(empData.id, empData);
+            } else {
+              addEmployee(empData);
+            }
+          }}
+        />
+      )}
     </div>
   );
 };
