@@ -8,6 +8,7 @@ import { ServiceRequestDetailModal } from './ServiceRequestDetailModal';
 import { AssignmentBoardModal } from './AssignmentBoardModal';
 import { RecordPaymentModal } from './RecordPaymentModal';
 import { ComplaintResolveModal } from './ComplaintResolveModal';
+import { EmployeeModal } from './EmployeeModal';
 import {
   ShieldCheck,
   UserCheck,
@@ -97,6 +98,8 @@ export const AdminPortal: React.FC = () => {
     vendors,
     employees,
     updateEmployeeAvailability,
+    addEmployee,
+    updateEmployee,
     services,
     packages,
     priceHistory,
@@ -132,6 +135,8 @@ export const AdminPortal: React.FC = () => {
   const [selectedEditService, setSelectedEditService] = useState<ServiceItem | null>(null);
   const [isAddServiceModalOpen, setIsAddServiceModalOpen] = useState(false);
   const [selectedDetailRequestId, setSelectedDetailRequestId] = useState<string | null>(null);
+  const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
 
   // Assignment Board Modal state
   const [boardModalTarget, setBoardModalTarget] = useState<{
@@ -1355,36 +1360,57 @@ export const AdminPortal: React.FC = () => {
           {/* ======================================================== */}
           {activeAdminTab === 'employees' && (
             <div className="bg-white rounded-2xl border border-[#c0c9c2]/50 p-5 shadow-xs space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <h2 className="text-base font-black text-[#131b2e] flex items-center space-x-2">
                     <UserCog className="w-5 h-5 text-[#003523]" />
                     <span>Direct Company Staff & Payroll Artisans ({employees.length})</span>
                   </h2>
                   <p className="text-xs text-[#707973]">
-                    Permanent company technicians equipped with standardized tool kits and verified KYC.
+                    Permanent company technicians equipped with standardized tool kits, assigned roles, and verified KYC across Sectors 94 to 111.
                   </p>
                 </div>
+                <button
+                  onClick={() => {
+                    setEditingEmployee(null);
+                    setIsEmployeeModalOpen(true);
+                  }}
+                  className="px-4 py-2.5 rounded-xl bg-[#003523] hover:bg-[#144d37] text-white text-xs font-bold shadow-xs transition-all flex items-center justify-center space-x-2 shrink-0 self-start sm:self-auto cursor-pointer"
+                >
+                  <Plus className="w-4 h-4 text-[#fe932c]" />
+                  <span>+ Add Employee & Assign Role</span>
+                </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {employees.map((emp) => (
                   <div
                     key={emp.id}
-                    className="p-4 rounded-xl border border-[#c0c9c2]/50 bg-[#faf8ff] space-y-2.5 text-xs"
+                    className="p-4 rounded-2xl border border-[#c0c9c2]/60 bg-[#faf8ff] space-y-3 text-xs hover:shadow-md transition-shadow"
                   >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <div className="font-extrabold text-sm text-[#131b2e]">{emp.name}</div>
-                        <div className="text-[11px] text-[#707973]">{emp.mobile}</div>
+                    <div className="flex justify-between items-start gap-2">
+                      <div className="space-y-0.5">
+                        <div className="flex items-center space-x-1.5 flex-wrap">
+                          <span className="font-black text-sm text-[#131b2e]">{emp.name}</span>
+                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-gray-200 text-gray-700">
+                            {emp.employeeCode || emp.id}
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-[#707973] flex items-center space-x-1">
+                          <Phone className="w-3 h-3 text-[#003523]" />
+                          <span>{emp.mobile}</span>
+                        </div>
                       </div>
+
                       <select
                         value={emp.availability}
                         onChange={(e) => updateEmployeeAvailability(emp.id, e.target.value as any)}
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${
+                        className={`text-[10px] font-bold px-2 py-1 rounded-lg border cursor-pointer ${
                           emp.availability === 'AVAILABLE'
                             ? 'bg-[#c0edd3] text-[#003523] border-[#003523]'
-                            : 'bg-amber-100 text-amber-800 border-amber-300'
+                            : emp.availability === 'ON_JOB'
+                            ? 'bg-amber-100 text-amber-800 border-amber-300'
+                            : 'bg-gray-100 text-gray-600 border-gray-300'
                         }`}
                       >
                         <option value="AVAILABLE">AVAILABLE</option>
@@ -1393,15 +1419,79 @@ export const AdminPortal: React.FC = () => {
                       </select>
                     </div>
 
-                    <div className="text-[#404943]">
-                      <strong>Skills:</strong> {emp.skills.join(', ')}
+                    {/* Assigned Operational Role */}
+                    <div className="bg-[#f4fbf7] p-2.5 rounded-xl border border-[#c0edd3]/70 space-y-1">
+                      <div className="text-[10px] font-black uppercase tracking-wider text-[#003523] flex items-center justify-between">
+                        <span className="flex items-center space-x-1">
+                          <Briefcase className="w-3 h-3 text-[#fe932c]" />
+                          <span>Assigned Role</span>
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-white text-[#003523] border border-[#003523]/30 font-extrabold">
+                          {emp.status}
+                        </span>
+                      </div>
+                      <div className="font-extrabold text-[#003523] text-xs">
+                        {emp.role || 'Field Specialist'}
+                      </div>
                     </div>
-                    <div className="text-[#404943]">
-                      <strong>Assigned Hub:</strong> {emp.serviceAreas.join(', ')}
+
+                    {/* Trade Categories */}
+                    {emp.categories && emp.categories.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {emp.categories.map((cat, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white border border-[#c0c9c2]/50 text-[#404943]"
+                          >
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Skills */}
+                    <div className="text-[#404943] leading-relaxed">
+                      <strong className="text-[#131b2e]">Specializations:</strong>{' '}
+                      <span className="text-[#404943]">{emp.skills.join(', ')}</span>
                     </div>
-                    <div className="pt-2 border-t border-[#c0c9c2]/40 flex justify-between text-[#707973]">
-                      <span>Rating: {emp.rating} ★</span>
-                      <span>Completed: {emp.completedJobs} jobs</span>
+
+                    {/* Assigned Hubs / Sectors */}
+                    <div className="text-[#404943] space-y-1">
+                      <div className="flex items-center space-x-1 text-[11px] font-bold text-[#131b2e]">
+                        <MapPin className="w-3 h-3 text-[#003523]" />
+                        <span>Assigned Sectors ({emp.serviceAreas.length}):</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {emp.serviceAreas.map((area, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-[#003523] border border-emerald-200 font-medium"
+                          >
+                            {area}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Stats & Actions Footer */}
+                    <div className="pt-2 border-t border-[#c0c9c2]/40 flex items-center justify-between">
+                      <div className="flex items-center space-x-2 text-[11px] text-[#707973]">
+                        <span className="font-bold text-amber-700">{emp.rating} ★</span>
+                        <span>•</span>
+                        <span>{emp.completedJobs} jobs</span>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          setEditingEmployee(emp);
+                          setIsEmployeeModalOpen(true);
+                        }}
+                        className="px-2.5 py-1 rounded-lg border border-[#003523] text-[#003523] hover:bg-[#003523] hover:text-white transition-all text-[11px] font-bold flex items-center space-x-1 cursor-pointer"
+                        title="Edit operational role, trade skills and assigned service sectors"
+                      >
+                        <Edit3 className="w-3 h-3" />
+                        <span>Edit Role & Hubs</span>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -2255,6 +2345,23 @@ export const AdminPortal: React.FC = () => {
           onClose={() => setSelectedComplaint(null)}
         />
       )}
+
+      {/* 8. Onboard & Edit Employee / Role Modal */}
+      <EmployeeModal
+        isOpen={isEmployeeModalOpen}
+        onClose={() => {
+          setIsEmployeeModalOpen(false);
+          setEditingEmployee(null);
+        }}
+        initialEmployee={editingEmployee}
+        onSave={(empData, isEdit) => {
+          if (isEdit) {
+            updateEmployee(empData.id, empData);
+          } else {
+            addEmployee(empData);
+          }
+        }}
+      />
     </div>
   );
 };

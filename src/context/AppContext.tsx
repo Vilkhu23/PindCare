@@ -199,6 +199,7 @@ interface AppContextType {
   employees: Employee[];
   updateEmployeeAvailability: (employeeId: string, availability: Employee['availability']) => void;
   addEmployee: (employee: Employee) => void;
+  updateEmployee: (employeeId: string, updates: Partial<Employee>) => void;
   currentEmployeeId: string | null;
   setCurrentEmployeeId: (id: string | null) => void;
   employeeNotifications: EmployeeNotification[];
@@ -1938,8 +1939,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const addEmployee = (emp: Employee) => {
     setEmployees((prev) => [emp, ...prev]);
-    addAuditEntry('EMPLOYEE_ONBOARDED', 'EMPLOYEE', emp.id, `Created employee: ${emp.name}`);
+    addAuditEntry('EMPLOYEE_ONBOARDED', 'EMPLOYEE', emp.id, `Created employee: ${emp.name} (Role: ${emp.role || 'Field Technician'})`);
     showToast(`Added technician employee ${emp.name}`, 'success');
+  };
+
+  const updateEmployee = (employeeId: string, updates: Partial<Employee>) => {
+    setEmployees((prev) =>
+      prev.map((e) => (e.id === employeeId ? { ...e, ...updates } : e))
+    );
+    addAuditEntry(
+      'EMPLOYEE_UPDATED',
+      'EMPLOYEE',
+      employeeId,
+      `Updated employee profile/role: ${updates.role || 'Details modified'}`
+    );
+    showToast(`Updated employee details & role`, 'success');
   };
 
   // EMPLOYEE PORTAL ACTIONS
@@ -2379,6 +2393,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         employees,
         updateEmployeeAvailability,
         addEmployee,
+        updateEmployee,
         currentEmployeeId,
         setCurrentEmployeeId,
         employeeNotifications,

@@ -308,6 +308,8 @@ export interface Employee {
   completedJobs: number;
   rating: number;
   joinedDate: string;
+  role?: string;
+  employeeCode?: string;
 }
 
 export interface HomeProjectRequest {

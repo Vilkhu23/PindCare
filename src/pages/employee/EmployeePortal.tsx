@@ -194,7 +194,12 @@ export const EmployeePortal: React.FC = () => {
                         className="text-[#003523] focus:ring-[#003523]"
                       />
                       <div>
-                        <div className="font-bold text-gray-900">{emp.name}</div>
+                        <div className="flex items-center space-x-1.5 flex-wrap">
+                          <span className="font-bold text-gray-900">{emp.name}</span>
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                            {emp.role || 'Field Specialist'}
+                          </span>
+                        </div>
                         <div className="text-[11px] text-gray-500 font-normal">
                           {emp.skills.join(', ')}
                         </div>
@@ -268,12 +273,15 @@ export const EmployeePortal: React.FC = () => {
               <HardHat className="w-6 h-6" />
             </div>
             <div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 flex-wrap">
                 <h1 className="text-lg font-bold tracking-tight text-white leading-none">
                   {currentEmployee.name}
                 </h1>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/20 text-[#b6efd1] text-[10px] font-bold border border-emerald-400/30">
-                  Staff Technician #{currentEmployee.id}
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#fe932c] text-[#002114] text-[10px] font-black">
+                  {currentEmployee.role || 'Field Specialist'}
+                </span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/20 text-[#b6efd1] text-[10px] font-mono font-bold border border-emerald-400/30">
+                  {currentEmployee.employeeCode || `#${currentEmployee.id}`}
                 </span>
               </div>
               <div className="text-xs text-gray-300 mt-1 flex items-center space-x-3">

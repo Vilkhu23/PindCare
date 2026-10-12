@@ -98,25 +98,39 @@ export const VendorLedgerModal: React.FC<VendorLedgerModalProps> = ({ vendorId, 
               </button>
               <button
                 type="button"
-                onClick={() => setDelta(3)}
-                className={`flex-1 py-2 rounded-lg border font-bold text-xs ${
-                  delta === 3
-                    ? 'bg-[#003523] text-white border-[#003523]'
-                    : 'bg-white text-[#003523] border-[#003523]/40'
-                }`}
-              >
-                +3 Pack Bonus
-              </button>
-              <button
-                type="button"
                 onClick={() => setDelta(7)}
                 className={`flex-1 py-2 rounded-lg border font-bold text-xs ${
                   delta === 7
                     ? 'bg-[#003523] text-white border-[#003523]'
                     : 'bg-white text-[#003523] border-[#003523]/40'
                 }`}
+                title="Initial Demo Plan (₹1,499 · 7 Leads)"
               >
-                +7 Renewal
+                +7 Demo (₹1,499)
+              </button>
+              <button
+                type="button"
+                onClick={() => setDelta(16)}
+                className={`flex-1 py-2 rounded-lg border font-bold text-xs ${
+                  delta === 16
+                    ? 'bg-[#003523] text-white border-[#003523]'
+                    : 'bg-white text-[#003523] border-[#003523]/40'
+                }`}
+                title="Contractor Plan (₹2,999 · 16 Leads)"
+              >
+                +16 Contractor (₹2,999)
+              </button>
+              <button
+                type="button"
+                onClick={() => setDelta(30)}
+                className={`flex-1 py-2 rounded-lg border font-bold text-xs ${
+                  delta === 30
+                    ? 'bg-[#003523] text-white border-[#003523]'
+                    : 'bg-white text-[#003523] border-[#003523]/40'
+                }`}
+                title="Enterprise Crew Plan (₹4,999 · 30 Leads)"
+              >
+                +30 Enterprise (₹4,999)
               </button>
             </div>
           </div>

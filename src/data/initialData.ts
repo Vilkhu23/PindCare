@@ -1547,8 +1547,8 @@ export const INITIAL_VENDORS: Vendor[] = [
     documentsVerified: true,
     status: 'ACTIVE',
     plan: {
-      name: 'Standard Pro Plan',
-      price: 1500,
+      name: 'Initial Demo Plan',
+      price: 1499,
       totalOpportunities: 7,
       usedOpportunities: 3,
       remainingOpportunities: 4,
@@ -1572,8 +1572,8 @@ export const INITIAL_VENDORS: Vendor[] = [
     documentsVerified: true,
     status: 'ACTIVE',
     plan: {
-      name: 'Bulk Contractor Plan',
-      price: 3000,
+      name: 'Contractor Plan',
+      price: 2999,
       totalOpportunities: 16,
       usedOpportunities: 11,
       remainingOpportunities: 5,
@@ -1597,8 +1597,8 @@ export const INITIAL_VENDORS: Vendor[] = [
     documentsVerified: true,
     status: 'ACTIVE',
     plan: {
-      name: 'Standard Pro Plan',
-      price: 1500,
+      name: 'Initial Demo Plan',
+      price: 1499,
       totalOpportunities: 7,
       usedOpportunities: 2,
       remainingOpportunities: 5,
@@ -1622,13 +1622,13 @@ export const INITIAL_VENDORS: Vendor[] = [
     documentsVerified: true,
     status: 'ACTIVE',
     plan: {
-      name: 'Crew Plan',
-      price: 2000,
-      totalOpportunities: 10,
+      name: 'Enterprise Crew Plan',
+      price: 4999,
+      totalOpportunities: 30,
       usedOpportunities: 8,
-      remainingOpportunities: 2,
-      validityDays: 30,
-      expiryDate: '2026-10-28'
+      remainingOpportunities: 22,
+      validityDays: 45,
+      expiryDate: '2026-11-25'
     },
     activeJobs: 1,
     completedJobs: 53,
@@ -1650,7 +1650,9 @@ export const INITIAL_EMPLOYEES: Employee[] = [
     activeJobs: 0,
     completedJobs: 134,
     rating: 4.9,
-    joinedDate: '2025-04-10'
+    joinedDate: '2025-04-10',
+    role: 'Senior Master Technician',
+    employeeCode: 'EMP-101'
   },
   {
     id: 'emp-2',
@@ -1658,13 +1660,15 @@ export const INITIAL_EMPLOYEES: Employee[] = [
     mobile: '+91 98721 34912',
     skills: ['Water Motor Priming', 'Submersible Rewiring', 'Mixer Diverter'],
     categories: ['Plumbing'],
-    serviceAreas: ['Landran Road, Kharar', 'Sunny Enclave, Kharar'],
+    serviceAreas: ['Sector 94', 'Sector 98–99', 'Sector 104'],
     availability: 'AVAILABLE',
     status: 'ACTIVE',
     activeJobs: 1,
     completedJobs: 98,
     rating: 4.8,
-    joinedDate: '2025-06-01'
+    joinedDate: '2025-06-01',
+    role: 'Field Specialist',
+    employeeCode: 'EMP-102'
   },
   {
     id: 'emp-3',
@@ -1678,7 +1682,25 @@ export const INITIAL_EMPLOYEES: Employee[] = [
     activeJobs: 0,
     completedJobs: 112,
     rating: 4.9,
-    joinedDate: '2025-05-15'
+    joinedDate: '2025-05-15',
+    role: 'Lead Field Supervisor',
+    employeeCode: 'EMP-103'
+  },
+  {
+    id: 'emp-4',
+    name: 'Jaswant Singh Dhillon',
+    mobile: '+91 98155 42918',
+    skills: ['MIG Welding', 'SS 304 Railing Fitting', 'Heavy Iron Gate Alignments', 'Safety Grills'],
+    categories: ['Gate & Grill Fabrication', 'Home Projects'],
+    serviceAreas: ['Sector 94', 'Sectors 95–97', 'Sector 104', 'Sector 108', 'Sector 110'],
+    availability: 'AVAILABLE',
+    status: 'ACTIVE',
+    activeJobs: 0,
+    completedJobs: 74,
+    rating: 4.95,
+    joinedDate: '2025-08-20',
+    role: 'Fabrication Specialist',
+    employeeCode: 'EMP-104'
   }
 ];
 
